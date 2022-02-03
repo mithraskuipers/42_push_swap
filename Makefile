@@ -1,54 +1,83 @@
-NAME		= push_swap
-NAME_BONUS	= push_swap_bonus
+# ================================ VARIABLES ================================= #
 
-CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror
-RM			= rm -f
+# The name of your executable
+NAME	= push_swap
 
-DIR_INC		= ./inc/
-DIR_SRC		= ./src/
-DIR_LIBFT	= ./libft/
+# Compiler and compiling flags
+CC	= gcc
+#CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall
 
-DIR_INC_BONUS = ./include_bonus/
-DIR_SRC_BONUS = ./src_bonus/
 
-LIBFT_NAME = libft.a
-INC = -I include
+# Debug, use with`make DEBUG=1`
+ifeq ($(DEBUG),1)
+CFLAGS	+= -g3 -fsanitize=address
+endif
 
-SRC =	main.c \
-		get_next_line.c \
-		get_next_line_utils.c
-SRC_BONUS = main_bonus.c
+# Folder name
+SRCDIR		= src/
+OBJDIR		= bin/
+LIBFTDIR	= libft/
 
-SRC_FULLPATH = $(addprefix $(DIR_SRC), $(SRC))
-LIBFT_FULLPATH = $(addprefix $(DIR_LIBFT), $(LIBFT_NAME))
-OBJ_FULLPATH = $(SRC_FULLPATH:.c=.o)
+LIBFTLIB	= $(LIBFTDIR)/libft.a
 
-SRC_BONUS_FULLPATH = $(addprefix $(SRCS_BONUS_DIR), $(SRC_BONUS))
-OBJ_BONUS_FULLPATH = $(SRC_BONUS_FULLMATH:.c=.o)
 
-.c.o:
-	$(CC) $(CFLAGS) -I $(DIR_INC) -o $@ -c $?
+SRCS = main.c $(SRCS_GNL) $(SRCS_STACK)
 
-$(NAME): $(OBJ_FULLPATH)
-	make -C $(DIR_LIBFT) bonus
-	$(CC) -o $(NAME) $(OBJ_FULLPATH) -I $(DIR_INC) -L $(DIR_LIBFT) -lft
+SRCS_GNL = 	get_next_line/get_next_line.c \
+			get_next_line/get_next_line_utils.c \
 
-bonus: $(NAME_BONUS)
+SRCS_STACK = 
 
-$(NAME_BONUS): $(OBJ_BONUS_FULLPATH)
-	make -C $(DIR_LIBFT) bonus
-	$(CC) -o $(NAME_BONUS) $(OBJ_BONUS_FULLPATH) -I $(DIR_INC) -L $(DIR_LIBFT) -lft
-all: $(NAME)
+# String manipulation magic
+SRC		:= $(notdir $(SRCS))
+OBJ		:= $(SRC:.c=.o)
+OBJS	:= $(addprefix $(OBJDIR), $(OBJ))
 
-clean:
-	#make -C $(DIR_LIBFT) clean
-	$(RM) $(OBJ_FULLPATH) $(OBJ_BONUS_FULLPATH)
+# Colors
+GR	= \033[32;1m
+RE	= \033[31;1m
+YE	= \033[33;1m
+CY	= \033[36;1m
+RC	= \033[0m
 
-fclean:
-	#make -C $(DIR_LIBFT) fclean
-	$(RM) $(NAME) $(NAME_BONUS)
+# Implicit rules
+VPATH := $(SRCDIR) $(OBJDIR) $(shell find $(SRCDIR) -type d)
 
-re: fclean all
+# ================================== RULES =================================== #
 
-PHONY: all clean fclean re bonus
+all : $(NAME)
+
+# Compiling
+$(OBJDIR)%.o : %.c
+	@mkdir -p $(OBJDIR)
+	@printf "$(GR)+$(RC)"
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+# Linking
+$(NAME)	: $(LIBFTLIB) $(SRCS)  $(OBJS)
+	@printf "\n$(GR)=== Compiled [$(CC) $(CFLAGS)] ===\n--- $(SRC)$(RC)\n"
+	@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME)
+
+$(LIBFTLIB) :
+	make -C $(LIBFTDIR)
+
+# Cleaning
+clean : # doe ook voor libft
+	@printf "$(RE)--- Removing $(OBJDIR)$(RC)\n"
+	@rm -rf $(OBJDIR)
+
+fclean : clean # doe ook voor libft
+	@printf "$(RE)--- Removing $(NAME)$(RC)\n"
+	@rm -f $(NAME)
+
+# Special rule to force to remake everything
+re : fclean all # doe ook voor libft
+
+# This runs the program
+run : $(NAME)
+	@printf "$(CY)>>> Running $(NAME)$(RC)\n"
+	./$(NAME)
+
+# This specifies the rules that does not correspond to any filename
+.PHONY	= all run clean fclean re

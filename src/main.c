@@ -164,11 +164,6 @@ static int	ft_lstsize2(t_stack *lst)
 
 
 
-
-
-
-
-
 //static void	parse_numbers(int argc, char **argv);
 //static char	**dp_clean(char **dp);
 

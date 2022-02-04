@@ -1,13 +1,14 @@
-#include "push_swap/push_swap.h"
-#include "stack_list/push_swap_stack.h"
-#include "../libft/libft.h"
+#include "push_swap.h"
+#include "../stack_list/push_swap_stack.h"
+#include "../../libft/libft.h"
+#include "../get_next_line/get_next_line.h"
 
 static void valid_input(char *s);
-static void init_stack(char **argv, t_stack *stack);
-static t_stack	*ft_lstnew2(int index, int value);
-static void	ft_lstadd_back2(t_stack **lst, t_stack *new);
-static t_stack	*ft_lstlast2(t_stack *lst);
-static int	ft_lstsize2(t_stack *lst);
+static t_stack *init_stack(char **argv, t_stack *stack);
+static t_stack	*ps_list_new(int index, int value);
+static void	ps_list_addlast(t_stack **lst, t_stack *new);
+static t_stack	*ps_list_findlast(t_stack *lst);
+static int	ps_list_findlen(t_stack *lst);
 
 #include <stdio.h>
 
@@ -49,7 +50,7 @@ int		main(int argc, char **argv)
 	nbrs = 0;
 	if (argc < 1)
 		return (0);
-	init_stack(argv, NULL);
+	a = init_stack(argv, NULL);
 	return (0);
 }
 
@@ -75,33 +76,33 @@ static void valid_input(char *s)
 	}
 }
 
-static t_stack init_stack(char **argv, t_stack *stack)
+static t_stack *init_stack(char **argv, t_stack *stack)
 {
-	int	i;
-	int j;
+	int	arg;
+	int nbr;
 	char **split;
 
-	i = 1;
-	while (argv[i])//./program "2 6 3 4" 1 7 12 11 "10 9"
+	arg = 1;
+	while (argv[arg]) //./program "2 6 3 4" 1 7 12 11 "10 9"
 	{
-		split = ft_split(argv[i], ' ');
+		split = ft_split(argv[arg], ' ');
 		if (!split)
 			exit (EXIT_FAILURE);
-		j = 0;
-		while (split[j])
+		nbr = 0;
+		while (split[nbr])
 		{
-			valid_input(split[j]);
-			ft_lstadd_back2(&stack, ft_lstnew2(ft_lstsize2(stack), ft_atoi(split[j])));
-			j++;
+			valid_input(split[nbr]);
+			ps_list_addlast(&stack, ps_list_new(ps_list_findlen(stack), ft_atoi(split[nbr])));
+			nbr++;
 		}
-		i++;
+		arg++;
 	}
-	return (stack);
-	//print_list(stack, 0); // rowan linked list printer
+	print_list(stack, 0); // rowan linked list printer
+	//return (stack);
 	//while(1); //
 }
 
-static t_stack	*ft_lstnew2(int index, int value)
+static t_stack	*ps_list_new(int index, int value)
 {
 	t_stack	*new_elem;
 
@@ -114,7 +115,7 @@ static t_stack	*ft_lstnew2(int index, int value)
 	return (new_elem);
 }
 
-static void	ft_lstadd_back2(t_stack **lst, t_stack *new)
+static void	ps_list_addlast(t_stack **lst, t_stack *new)
 {
 	t_stack	*final_element;
 
@@ -123,12 +124,12 @@ static void	ft_lstadd_back2(t_stack **lst, t_stack *new)
 		*lst = new;
 		return ;
 	}
-	final_element = ft_lstlast2(*lst);
+	final_element = ps_list_findlast(*lst);
 	final_element->next = new;
 
 }
 
-static t_stack	*ft_lstlast2(t_stack *lst)
+static t_stack	*ps_list_findlast(t_stack *lst)
 {
 	while (lst)
 	{
@@ -139,7 +140,7 @@ static t_stack	*ft_lstlast2(t_stack *lst)
 	return (NULL);
 }
 
-static int	ft_lstsize2(t_stack *lst)
+static int	ps_list_findlen(t_stack *lst)
 {
 	size_t	i;
 

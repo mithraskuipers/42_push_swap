@@ -8,7 +8,6 @@ CC	= gcc
 #CFLAGS	= -Wall -Werror -Wextra
 CFLAGS	= -Wall
 
-
 # Debug, use with`make DEBUG=1`
 ifeq ($(DEBUG),1)
 CFLAGS	+= -g3 -fsanitize=address
@@ -19,15 +18,14 @@ SRCDIR		= src/
 OBJDIR		= bin/
 LIBFTDIR	= libft/
 
-LIBFTLIB	= $(LIBFTDIR)/libft.a
-
-
-SRCS = main.c $(SRCS_GNL) $(SRCS_STACK)
+SRCS = $(SRCS_PS) $(SRCS_GNL)
 
 SRCS_GNL = 	get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c \
 
-SRCS_STACK = 
+SRCS_PS = main.c 
+
+LIBFTLIB	= $(LIBFTDIR)/libft.a
 
 # String manipulation magic
 SRC		:= $(notdir $(SRCS))

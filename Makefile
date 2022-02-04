@@ -23,7 +23,8 @@ SRCS = $(SRCS_PS) $(SRCS_GNL)
 SRCS_GNL = 	get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c \
 
-SRCS_PS = main.c 
+SRCS_PS = main.c \
+			ps_list_print_stacks.c
 
 LIBFTLIB	= $(LIBFTDIR)/libft.a
 

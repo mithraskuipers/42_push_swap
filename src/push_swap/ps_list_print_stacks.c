@@ -1,6 +1,7 @@
+/*
 #include "push_swap.h"
 
-void	print_list(t_stack *stack_a, t_stack *stack_b)
+static void	print_list(t_stack *stack_a, t_stack *stack_b)
 {
 	if (!stack_a)
 		printf("List a NULL\n\n");
@@ -28,3 +29,4 @@ void	print_list(t_stack *stack_a, t_stack *stack_b)
 	}
 	printf("\n---\n\n");
 }
+*/

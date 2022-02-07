@@ -5,12 +5,14 @@
 
 #include <stdio.h>
 
-static void valid_input(char *s);
-static t_stack *init_stack(char **argv, t_stack *stack);
+static void 	valid_input(char *s);
+static t_stack 	*init_stack(char **argv, t_stack *stack);
 static t_stack	*ps_list_new(int index, int value);
-static void	ps_list_addlast(t_stack **lst, t_stack *new);
+static void		ps_list_addlast(t_stack **lst, t_stack *new);
 static t_stack	*ps_list_findlast(t_stack *lst);
-static int	ps_list_findlen(t_stack *lst);
+static int		ps_list_findlen(t_stack *lst);
+//static int 		check_duplicate(t_stack *stack);
+static void 	print_list(t_stack *stack_a, t_stack *stack_b);
 
 int		main(int argc, char **argv)
 {
@@ -22,8 +24,13 @@ int		main(int argc, char **argv)
 	if (argc < 1)
 		return (0);
 	a = init_stack(argv, NULL);
+	print_list(a, NULL);
+	//check_duplicate(a);
 	return (0);
 }
+
+//print_list(stack, 0);
+
 
 // niet static want ga ik waarschijnlijk vaker gebruiken
 void ps_error(void)
@@ -69,7 +76,7 @@ static t_stack *init_stack(char **argv, t_stack *stack)
 		}
 		arg++;
 	}
-	print_list(stack, 0);
+	return (stack);
 }
 
 static t_stack	*ps_list_new(int index, int value)
@@ -124,21 +131,106 @@ static int	ps_list_findlen(t_stack *lst)
 }
 
 
+static void	print_list(t_stack *stack_a, t_stack *stack_b)
+{
+	if (!stack_a)
+		printf("List a NULL\n\n");
+	else
+	{
+		printf("List a:\n");
+		while (stack_a->next)
+		{
+			printf("%d=%d\n", stack_a->index, stack_a->value);
+			stack_a = stack_a->next;
+		}
+		printf("%d=%d\n\n", stack_a->index, stack_a->value);
+	}
+	if (!stack_b)
+		printf("List b NULL\n");
+	else
+	{
+		printf("List b:\n");
+		while (stack_b->next)
+		{
+			printf("%d=%d\n", stack_b->index, stack_b->value);
+			stack_b = stack_b->next;
+		}
+		printf("%d=%d\n", stack_b->index, stack_b->value);
+	}
+	printf("\n---\n\n");
+}
+
+/*
 static int check_duplicate(t_stack *stack)
 {
-	while (lst)
+	printf("%d", stack->value);
+	t_stack	*tmp;
+
+	while (stack->next)
+	{
+
+		tmp = stack->next;
+		while (tmp)
+		{
+			if (tmp->value == stack->value)
+				return (1);
+			tmp = tmp->next;
+		}
+
+		printf("%d", stack->next);
+		stack = stack->next;
+	}
+	return (0);
+}
+*/
+
+/*
+static void check_duplicate(t_list *stack)
+{
+	t_stack	*ptr;
+
+	while (stack)
+	{
+		ptr = stack->next;
+		while (ptr)
+		{
+			if (ptr->value == stack->value)
+				return ;
+			ptr = ptr->next;
+		}
+		stack = stack->next;
+	}
+	printf("HEYYY");
+	return ;
+	//return (1);
+}
+*/
+
+/*
+new_elem->index = index;
+new_elem->value = value;
+new_elem->next = NULL;
+*/
+
+/*
+static int check_duplicate(t_stack *stack)
+{
+	int i;
+	i = 0;
+	while (stack.next != NULL)
 	{
 		
 	}
 }
 
+
 // ADD DUPLICATE CHECK
+// Maak nieuwe stack
+// Iterate over iedere value obv index
+// Plaats die 
 
 
-
-
-
-
+*/
 
 
 

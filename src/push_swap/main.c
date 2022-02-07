@@ -14,6 +14,9 @@ static int		ps_list_findlen(t_stack *lst);
 void			ps_error(void);
 static void 	print_list(t_stack *stack_a, t_stack *stack_b);
 static void 	check_duplicate(t_stack *stack);
+static int		check_ordered(t_stack *stack);
+static void		algorithms(t_stack *stack);
+static int 		stack_size(t_stack *stack);
 
 int		main(int argc, char **argv)
 {
@@ -25,8 +28,16 @@ int		main(int argc, char **argv)
 	if (argc < 1)
 		return (0);
 	a = init_stack(argv, NULL);
-	print_list(a, NULL);
+	//if (!(check_ordered(a)))
+		//algorithms(a);
+	printf("Stack size: %d\n", stack_size(a));
+	
+		
+	//printf("NOT ORDERED!");
+	
 
+	//clean_memory();
+	//print_list(a, NULL);
 	return (0);
 }
 
@@ -101,7 +112,6 @@ static void	ps_list_addlast(t_stack **lst, t_stack *new)
 	}
 	final_element = ps_list_findlast(*lst);
 	final_element->next = new;
-
 }
 
 static t_stack	*ps_list_findlast(t_stack *lst)
@@ -160,7 +170,6 @@ static void	print_list(t_stack *stack_a, t_stack *stack_b)
 static void check_duplicate(t_stack *stack)
 {
 	int		match;
-	int		current;
 	t_stack	*tmp1;
 	t_stack	*tmp2;
 
@@ -168,11 +177,10 @@ static void check_duplicate(t_stack *stack)
 	tmp2 = stack;
 	while (tmp1)
 	{
-		current = tmp1->value;
 		match = 0;
 		while (tmp2)
 		{
-			if (current == tmp2->value)
+			if (tmp1->value == tmp2->value)
 				match++;
 			if (match > 1)
 				ps_error();
@@ -180,4 +188,36 @@ static void check_duplicate(t_stack *stack)
 		}
 		tmp1 = tmp1->next;
 	}
+}
+
+static int check_ordered(t_stack *stack)
+{
+	int		previous;
+	t_stack	*tmp;
+
+	tmp = stack;
+	previous = tmp->value;
+	while (tmp)
+	{
+		if (tmp->value < previous)
+		{
+			return (0);
+		}
+		previous = tmp->value;
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+static int stack_size(t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	while (stack)
+	{
+		i++;
+		stack = stack->next;
+	}
+	return (i);
 }

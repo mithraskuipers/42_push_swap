@@ -3,16 +3,14 @@
 #include "../../libft/libft.h"
 #include "../get_next_line/get_next_line.h"
 
+#include <stdio.h>
+
 static void valid_input(char *s);
 static t_stack *init_stack(char **argv, t_stack *stack);
 static t_stack	*ps_list_new(int index, int value);
 static void	ps_list_addlast(t_stack **lst, t_stack *new);
 static t_stack	*ps_list_findlast(t_stack *lst);
 static int	ps_list_findlen(t_stack *lst);
-
-#include <stdio.h>
-
-
 
 int		main(int argc, char **argv)
 {
@@ -28,7 +26,7 @@ int		main(int argc, char **argv)
 }
 
 // niet static want ga ik waarschijnlijk vaker gebruiken
-void reterror(void)
+void ps_error(void)
 {
 	ft_putstr_fd("Error\n", 2);
 	exit(EXIT_FAILURE);
@@ -42,9 +40,9 @@ static void valid_input(char *s)
 	while (s[i])
 	{
 		if (!ft_isdigit(s[i]) && s[i] != ' ' && s[i] != '-' && s[i] != '+')
-			reterror();
+			ps_error();
 		if (s[i] == '-' && !ft_isdigit(s[i+1]))
-			reterror();
+			ps_error();
 		i++;
 	}
 }
@@ -56,7 +54,7 @@ static t_stack *init_stack(char **argv, t_stack *stack)
 	char **split;
 
 	arg = 1;
-	while (argv[arg]) //./program "2 6 3 4" 1 7 12 11 "10 9"
+	while (argv[arg])
 	{
 		split = ft_split(argv[arg], ' ');
 		if (!split)
@@ -65,14 +63,13 @@ static t_stack *init_stack(char **argv, t_stack *stack)
 		while (split[nbr])
 		{
 			valid_input(split[nbr]);
-			ps_list_addlast(&stack, ps_list_new(ps_list_findlen(stack), ft_atoi(split[nbr])));
+			ps_list_addlast(&stack, ps_list_new(ps_list_findlen(stack), \
+			ft_atoi(split[nbr])));
 			nbr++;
 		}
 		arg++;
 	}
-	print_list(stack, 0); // rowan linked list printer
-	//return (stack);
-	//while(1); //
+	print_list(stack, 0);
 }
 
 static t_stack	*ps_list_new(int index, int value)
@@ -127,8 +124,15 @@ static int	ps_list_findlen(t_stack *lst)
 }
 
 
+static int check_duplicate(t_stack *stack)
+{
+	while (lst)
+	{
+		
+	}
+}
 
-
+// ADD DUPLICATE CHECK
 
 
 

@@ -17,6 +17,8 @@ static void 	check_duplicate(t_stack *stack);
 static int		check_ordered(t_stack *stack);
 static void		algorithms(t_stack *stack);
 static int 		stack_size(t_stack *stack);
+//static void		2nbr_algorithm(*stack);
+//static void		3nbr_algorithm(*stack);
 
 int		main(int argc, char **argv)
 {
@@ -28,18 +30,79 @@ int		main(int argc, char **argv)
 	if (argc < 1)
 		return (0);
 	a = init_stack(argv, NULL);
-	//if (!(check_ordered(a)))
-		//algorithms(a);
-	printf("Stack size: %d\n", stack_size(a));
-	
-		
-	//printf("NOT ORDERED!");
-	
-
-	//clean_memory();
-	//print_list(a, NULL);
+	// if (!(check_ordered(a)))
+	// algorithms(a);
+	// printf("Stack size: %d\n", stack_size(a));
+	// printf("NOT ORDERED!");
+	// clean_memory();
+	print_list(a, NULL);
 	return (0);
 }
+
+int	swap(t_stack *stack, char *cmd_s)
+{
+	int	i;
+	t_stack	*temp;
+
+	temp = stack;
+	if (temp && temp->next)
+	{
+		i = temp->value;
+		temp->value = temp->next->value;
+		temp->next->value = i;
+		//ft_putendl(s);
+		return (1);
+	}
+	return (0);
+}
+
+/*
+static void 2nbr_algorithm(t_stack *stack)
+{
+	//
+}
+
+static void 3nbr_algorithm(t_stack *stack)
+{
+	//
+}
+*/
+
+/*
+static void	algorithms(t_stack *stack)
+{
+	if (stack_size(stack) == 2) // als niet in order
+	{
+		2nbr_algorithm(stack);
+	}
+	else if (stack_size(stack) == 3)
+	{
+		3nbr_algorithm(stack);
+	}
+	while (!(is_in_order(stack)))
+	{
+		if (stack->a_size == 2)
+		{
+			swap_a(stack);
+			write(1, "sa\n", 3);
+		}
+		else if (stack->a_size == 3)
+			three_numbers(stack);
+		else if (is_decrescent(stack))
+			decrescent_algorithm(stack);
+		else if (stack->a_size == 5)
+		{
+			five_numbers(stack);
+			three_numbers(stack);
+			push_a(stack);
+			push_a(stack);
+			write(1, "pa\npa\n", 6);
+		}
+		else
+			algorithm(stack);
+	}
+}
+*/
 
 void ps_error(void) // niet static want vaak gebruiken
 {
@@ -221,3 +284,4 @@ static int stack_size(t_stack *stack)
 	}
 	return (i);
 }
+

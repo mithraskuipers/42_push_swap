@@ -2,9 +2,8 @@
 
 
 #include "push_swap.h"
-#include "../stack_list/push_swap_stack.h"
-#include "../../libft/libft.h"
-#include "../get_next_line/get_next_line.h"
+#include "push_swap_stack.h"
+#include "../libft/libft.h"
 
 #include <stdio.h>
 
@@ -17,8 +16,8 @@ static int		ps_list_findlen(t_stack *lst);
 void			ps_error(void);
 static void 	print_list(t_stack *stack_a, t_stack *stack_b);
 static void 	check_duplicate(t_stack *stack);
-static int		check_ordered(t_stack *stack);
-static void		algorithms(t_stack *stack);
+//static int		check_ordered(t_stack *stack);
+//static void		algorithms(t_stack *stack);
 static int 		stack_size(t_stack *stack);
 //static void		2nbr_algorithm(*stack);
 //static void		3nbr_algorithm(*stack);
@@ -33,6 +32,7 @@ int		main(int argc, char **argv)
 	if (argc < 1)
 		return (0);
 	a = init_stack(argv, NULL);
+	printf("Stack size: %d\n", stack_size(a));
 	// if (!(check_ordered(a)))
 	// algorithms(a);
 	// printf("Stack size: %d\n", stack_size(a));
@@ -256,6 +256,7 @@ static void check_duplicate(t_stack *stack)
 	}
 }
 
+/*
 static int check_ordered(t_stack *stack)
 {
 	int		previous;
@@ -274,6 +275,7 @@ static int check_ordered(t_stack *stack)
 	}
 	return (1);
 }
+*/
 
 static int stack_size(t_stack *stack)
 {

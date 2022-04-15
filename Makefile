@@ -1,82 +1,60 @@
-# ================================ VARIABLES ================================= #
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    Makefile                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
+#                                                    +#+                       #
+#    Created: 2022/04/15 21:13:40 by mikuiper      #+#    #+#                  #
+#    Updated: 2022/04/15 22:55:02 by mikuiper      ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
 
-# The name of your executable
-NAME	= push_swap
+NAME		= push_swap
+CC			= gcc
+#CFLAGS		= -Wall -Wextra -Werror
 
-# Compiler and compiling flags
-CC	= gcc
-#CFLAGS	= -Wall -Werror -Wextra
-CFLAGS	= -Wall
+INCS	=	-I./inc
 
-# Debug, use with`make DEBUG=1`
-ifeq ($(DEBUG),1)
-CFLAGS	+= -g3 -fsanitize=address
-endif
+SRC_DIR		= ./src/
 
-# Folder name
-SRCDIR		= src/
-OBJDIR		= bin/
-LIBFTDIR	= libft/
+SRCS		=	$(SRC_DIR)main.c \
+				$(SRC_DIR)ps_list_print_stacks.c
 
-SRCS = $(SRCS_PS) $(SRCS_GNL)
+OBJS		= $(SRCS:.c=.o)
 
-SRCS_GNL = 	get_next_line/get_next_line.c \
-			get_next_line/get_next_line_utils.c \
+FT_DIR	=	./libft/
+FT_MAKE	=	$(MAKE) -C $(FT_DIR)
+FT_LIB		= -L$(FT_DIR) -lft
 
-SRCS_PS = main.c \
-			ps_list_print_stacks.c
+GREEN = \033[92m
+NOCOLOR = \033[0;38m
 
-LIBFTLIB	= $(LIBFTDIR)/libft.a
+all: $(NAME)
 
-# String manipulation magic
-SRC		:= $(notdir $(SRCS))
-OBJ		:= $(SRC:.c=.o)
-OBJS	:= $(addprefix $(OBJDIR), $(OBJ))
+$(NAME): $(OBJS)
+	@echo "\n$(GREEN)[push_swap] - Compiling $(NAME)..$(NOCOLOR)"
+	@$(FT_MAKE)
+	@$(CC) $(CFLAGS) $(INCS) -o $(NAME) $(OBJS) $(FT_LIB)
 
-# Colors
-GR	= \033[32;1m
-RE	= \033[31;1m
-YE	= \033[33;1m
-CY	= \033[36;1m
-RC	= \033[0m
+.c.o:
+	@$(CC) $(CFLAGS) $(INCS) -c -o $@ $<
 
-# Implicit rules
-VPATH := $(SRCDIR) $(OBJDIR) $(shell find $(SRCDIR) -type d)
+clean:
+	$(FT_MAKE) clean
+	@echo "$(GREEN)[push_swap] - Running clean..$(NOCOLOR)"
+	@echo "$(GREEN)[push_swap] - Removing object files..$(NOCOLOR)"
+	@$(RM) $(OBJS)
+	@echo "$(GREEN)[push_swap] - Finished running clean!$(NOCOLOR)"
 
-# ================================== RULES =================================== #
+fclean:
+	@$(FT_MAKE) fclean
+	@echo "$(GREEN)[push_swap] - Running fclean..$(NOCOLOR)"
+	@echo "$(GREEN)[push_swap] - Removing object files..$(NOCOLOR)"
+	@echo "$(GREEN)[push_swap] - Finished running fclean!$(NOCOLOR)"
+	@$(RM) $(OBJS)
+	@$(RM) $(NAME)
 
-all : $(NAME)
+re: fclean all
 
-# Compiling
-$(OBJDIR)%.o : %.c
-	@mkdir -p $(OBJDIR)
-	@printf "$(GR)+$(RC)"
-	@$(CC) $(CFLAGS) -c $< -o $@
-
-# Linking
-$(NAME)	: $(LIBFTLIB) $(SRCS)  $(OBJS)
-	@printf "\n$(GR)=== Compiled [$(CC) $(CFLAGS)] ===\n--- $(SRC)$(RC)\n"
-	@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME)
-
-$(LIBFTLIB) :
-	make -C $(LIBFTDIR)
-
-# Cleaning
-clean : # doe ook voor libft
-	@printf "$(RE)--- Removing $(OBJDIR)$(RC)\n"
-	@rm -rf $(OBJDIR)
-
-fclean : clean # doe ook voor libft
-	@printf "$(RE)--- Removing $(NAME)$(RC)\n"
-	@rm -f $(NAME)
-
-# Special rule to force to remake everything
-re : fclean all # doe ook voor libft
-
-# This runs the program
-run : $(NAME)
-	@printf "$(CY)>>> Running $(NAME)$(RC)\n"
-	./$(NAME)
-
-# This specifies the rules that does not correspond to any filename
-.PHONY	= all run clean fclean re
+.PHONY: all clean fclean re

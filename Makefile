@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/15 21:13:40 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/04/15 22:55:02 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/04/16 23:01:15 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,11 @@ INCS	=	-I./inc
 SRC_DIR		= ./src/
 
 SRCS		=	$(SRC_DIR)main.c \
+				$(SRC_DIR)ps_init.c \
+				$(SRC_DIR)ps_error.c \
+				$(SRC_DIR)ps_done.c \
+				$(SRC_DIR)ps_tools.c \
+				$(SRC_DIR)ps_cmds.c \
 				$(SRC_DIR)ps_list_print_stacks.c
 
 OBJS		= $(SRCS:.c=.o)

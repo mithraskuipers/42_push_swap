@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/16 15:46:59 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/17 11:02:20 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/04/17 14:47:10 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_stack *init_stack(char **argv, t_stack *stack)
 		while (split[nbr])
 		{
 			ps_isvalid(split[nbr]);
-			ps_list_addlast(&stack, ps_new_element(linkedlist_len(stack), \
+			ps_addlast(&stack, ps_new_element(linkedlist_len(stack), \
 			ft_atoi(split[nbr])));
 			nbr++;
 		}

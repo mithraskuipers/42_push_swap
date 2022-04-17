@@ -15,13 +15,14 @@ int		main(int argc, char **argv)
 	if (argc < 1)
 		return (0);
 	a = init_stack(argv, NULL);
+	b = init_stack(argv, NULL);
 	printf("Stack size: %d\n", linkedlist_len(a));
 	// if (!(ps_isordered(a)))
 	// algorithms(a);
 	// printf("Stack size: %d\n", linkedlist_len(a));
 	// printf("NOT ORDERED!");
 	// clean_memory();
-	//print_list(a, NULL);
+	print_list(a, b);
 	return (0);
 }
 

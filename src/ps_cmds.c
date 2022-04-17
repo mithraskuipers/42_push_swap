@@ -6,13 +6,13 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/16 22:57:40 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/16 22:58:10 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/04/17 14:46:50 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_list_addlast(t_stack **lst, t_stack *new)
+void	ps_addlast(t_stack **lst, t_stack *new)
 {
 	t_stack	*final_element;
 

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/16 15:46:59 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/16 23:00:17 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/04/17 11:02:20 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 /*
 init_stack()
 Initializes user input by creating a linked list and checking for duplicates.
+Note that this function able to parse string literals placed inbetween separate
+argument values.
 */
 
 t_stack *init_stack(char **argv, t_stack *stack)
@@ -33,7 +35,7 @@ t_stack *init_stack(char **argv, t_stack *stack)
 		while (split[nbr])
 		{
 			ps_isvalid(split[nbr]);
-			ps_list_addlast(&stack, ps_list_new(linkedlist_len(stack), \
+			ps_list_addlast(&stack, ps_new_element(linkedlist_len(stack), \
 			ft_atoi(split[nbr])));
 			nbr++;
 		}
@@ -75,6 +77,9 @@ void ps_hasduplicates(t_stack *stack)
 /*
 ps_isvalid()
 Checks whether user input is numeric. If not, exit the program.
+It checks every character in the string for being either a digit, space, 
+minus/plus sign character. If not, it prints an error statement and exits the
+program with exit code 1.
 */
 
 void ps_isvalid(char *s)
@@ -92,7 +97,14 @@ void ps_isvalid(char *s)
 	}
 }
 
-t_stack	*ps_list_new(int index, int value)
+/*
+ps_new_element()
+Creates a new element for the linked list, conform my own setup format.
+It allocates memory for the new element, and sets its index and value values
+to what has been inputted by the user.
+*/
+
+t_stack	*ps_new_element(int index, int value)
 {
 	t_stack	*new_elem;
 

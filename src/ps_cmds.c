@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/16 22:57:40 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/19 14:16:02 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/04/19 23:09:35 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,23 @@ void	ps_addlast(t_stack **lst, t_stack *new)
 	final_element->next = new;
 }
 
-void	ps_swap_a(t_stack **lst)
+/* SA */
+
+void	ps_swap_a(t_stack *lst)
 {
-	int tmp;
-	tmp = lst->next;
-	ft_putnbr_fd(tmp.value, 2);
+	// TODO Do nothing if there is only one or no elements.
+	int	val1;
+	int	val2;
+
+	t_stack	*tmp;
+	
+	tmp = lst;
+	val1 = lst->value;
+	val2 = lst->next->value;
+	tmp->value = val2;
+	tmp->next->value = val1;
+	lst = tmp;
+
 }	
 
 

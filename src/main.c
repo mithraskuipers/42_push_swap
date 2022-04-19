@@ -22,8 +22,8 @@ int		main(int argc, char **argv)
 	// printf("Stack size: %d\n", linkedlist_len(a));
 	// printf("NOT ORDERED!");
 	// clean_memory();
+	ps_swap_a(a);
 	print_list(a, b);
-	ps_swap_a(&a);
 	return (0);
 }
 

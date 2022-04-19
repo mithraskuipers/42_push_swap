@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/16 21:47:50 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/16 21:48:07 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/04/19 11:55:56 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 /*
 ps_isordered()
 Checks whether the elements in the linked list are numerically ordered,
-from smallest to largest. If so, it returns 1. Else 0.
+from smallest to largest. If ordered, it returns 1. Else 0.
 */
 
-int ps_isordered(t_stack *stack)
+int	ps_isordered(t_stack *stack)
 {
 	int		previous;
 	t_stack	*tmp;

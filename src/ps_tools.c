@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/16 22:47:04 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/16 22:55:01 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/04/19 09:49:38 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ t_stack	*ps_list_findlast(t_stack *lst)
 	}
 	return (NULL);
 }
-

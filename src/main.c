@@ -23,9 +23,9 @@ int		main(int argc, char **argv)
 	// printf("NOT ORDERED!");
 	// clean_memory();
 	print_list(a, b);
+	ps_swap_a(&a);
 	return (0);
 }
-
 
 /*
 int	swap(t_stack *stack, char *cmd_s)
@@ -94,14 +94,6 @@ void	algorithms(t_stack *stack)
 }
 */
 
-
-
-
-
-
-
-
-
 void	print_list(t_stack *stack_a, t_stack *stack_b)
 {
 	if (!stack_a)
@@ -130,8 +122,3 @@ void	print_list(t_stack *stack_a, t_stack *stack_b)
 	}
 	printf("\n---\n\n");
 }
-
-
-
-
-

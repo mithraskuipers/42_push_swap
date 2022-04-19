@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/16 22:57:40 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/17 14:46:50 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/04/19 14:16:02 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,3 +24,22 @@ void	ps_addlast(t_stack **lst, t_stack *new)
 	final_element = ps_list_findlast(*lst);
 	final_element->next = new;
 }
+
+void	ps_swap_a(t_stack **lst)
+{
+	int tmp;
+	tmp = lst->next;
+	ft_putnbr_fd(tmp.value, 2);
+}	
+
+
+/*/
+previous = tmp->value;
+while (tmp)
+{
+	if (tmp->value < previous)
+		return (0);
+	previous = tmp->value;
+	tmp = tmp->next;
+}
+*/

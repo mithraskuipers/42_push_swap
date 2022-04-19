@@ -24,5 +24,10 @@ void	msg_exit(char *s, int exit_code);
 t_stack	*ps_list_findlast(t_stack *lst);
 t_stack	*ps_new_element(int index, int value);
 t_stack	*init_stack(char **argv, t_stack *stack);
+void	print_list(t_stack *stack_a, t_stack *stack_b);
+
+/* push swap commands */
+void	ps_swap_a(t_stack **lst);
+
 
 #endif

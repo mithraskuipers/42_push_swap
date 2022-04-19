@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/16 15:46:59 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/17 14:47:10 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/04/19 11:54:47 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Note that this function able to parse string literals placed inbetween separate
 argument values.
 */
 
-t_stack *init_stack(char **argv, t_stack *stack)
+t_stack	*init_stack(char **argv, t_stack *stack)
 {
 	int	arg;
 	int nbr;
@@ -51,7 +51,7 @@ Checks whether the linked list contains duplicate values.
 If so, it calls msg_exit() which exits the program.
 */
 
-void ps_hasduplicates(t_stack *stack)
+void	ps_hasduplicates(t_stack *stack)
 {
 	int		match;
 	t_stack	*tmp1;
@@ -82,7 +82,7 @@ minus/plus sign character. If not, it prints an error statement and exits the
 program with exit code 1.
 */
 
-void ps_isvalid(char *s)
+void	ps_isvalid(char *s)
 {
 	int i;
 

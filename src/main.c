@@ -16,12 +16,14 @@ int		main(int argc, char **argv)
 		return (0);
 	a = init_stack(argv, NULL);
 	b = init_stack(argv, NULL);
-	printf("Stack size: %d\n", linkedlist_len(a));
+	printf("Stack size: %d\n", ps_ll_len(a));
 	// if (!(ps_isordered(a)))
 	// algorithms(a);
-	// printf("Stack size: %d\n", linkedlist_len(a));
+	// printf("Stack size: %d\n", ps_ll_len(a));
 	// printf("NOT ORDERED!");
 	// clean_memory();
+	//int z = ps_ll_len(a);
+	//ft_putnbr_fd(z, 2);
 	ps_swap_a(a);
 	print_list(a, b);
 	return (0);
@@ -61,11 +63,11 @@ void 3nbr_algorithm(t_stack *stack)
 /*
 void	algorithms(t_stack *stack)
 {
-	if (linkedlist_len(stack) == 2) // als niet in order
+	if (ps_ll_len(stack) == 2) // als niet in order
 	{
 		2nbr_algorithm(stack);
 	}
-	else if (linkedlist_len(stack) == 3)
+	else if (ps_ll_len(stack) == 3)
 	{
 		3nbr_algorithm(stack);
 	}

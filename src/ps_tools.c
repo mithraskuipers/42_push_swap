@@ -6,26 +6,13 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/16 22:47:04 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/19 09:49:38 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/04/20 12:36:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int linkedlist_len(t_stack *stack)
-{
-	int	i;
-
-	i = 0;
-	while (stack)
-	{
-		i++;
-		stack = stack->next;
-	}
-	return (i);
-}
-
-t_stack	*ps_list_findlast(t_stack *lst)
+t_stack	*ps_ll_getlast(t_stack *lst)
 {
 	while (lst)
 	{
@@ -34,4 +21,17 @@ t_stack	*ps_list_findlast(t_stack *lst)
 		lst = lst->next;
 	}
 	return (NULL);
+}
+
+int	ps_ll_len(t_stack *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }

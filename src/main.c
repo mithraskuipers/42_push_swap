@@ -24,7 +24,8 @@ int		main(int argc, char **argv)
 	// clean_memory();
 	//int z = ps_ll_len(a);
 	//ft_putnbr_fd(z, 2);
-	ps_swap_a(a);
+	ps_swap_sync(a, b);
+	ps_addlast(&a, b); //
 	print_list(a, b);
 	return (0);
 }

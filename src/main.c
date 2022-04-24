@@ -16,7 +16,7 @@ int		main(int argc, char **argv)
 		return (0);
 	a = init_stack(argv, NULL);
 	b = init_stack(argv, NULL);
-	printf("Stack size: %d\n", ps_ll_len(a));
+	printf("Stack size: %d\n", ps_nnodes(a));
 	// if (!(ps_isordered(a)))
 	// algorithms(a);
 	// printf("Stack size: %d\n", ps_ll_len(a));
@@ -24,11 +24,13 @@ int		main(int argc, char **argv)
 	// clean_memory();
 	//int z = ps_ll_len(a);
 	//ft_putnbr_fd(z, 2);
-	ps_swap_sync(a, b);
-	ps_addlast(&a, b); //
+	ps_swap_ss(a, b);
+	//ps_addlast(&a, b); //
 	print_list(a, b);
-	return (0);
+	//return (0);
 }
+
+
 
 /*
 int	swap(t_stack *stack, char *cmd_s)

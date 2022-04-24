@@ -6,13 +6,13 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/16 22:47:04 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/20 12:36:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/04/23 18:15:05 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ps_ll_getlast(t_stack *lst)
+t_stack	*ps_getlast_node(t_stack *lst)
 {
 	while (lst)
 	{
@@ -23,7 +23,7 @@ t_stack	*ps_ll_getlast(t_stack *lst)
 	return (NULL);
 }
 
-int	ps_ll_len(t_stack *lst)
+int	ps_nnodes(t_stack *lst)
 {
 	int	i;
 

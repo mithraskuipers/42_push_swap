@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/16 22:57:40 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/21 14:24:45 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/04/24 22:22:06 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ps_addlast(t_stack **lst, t_stack *new)
 		*lst = new;
 		return ;
 	}
-	final_element = ps_ll_getlast(*lst);
+	final_element = ps_getlast_node(*lst);
 	final_element->next = new;
 }
 
@@ -40,13 +40,13 @@ void	ps_push(t_stack **lst, t_stack *new)
 
 /* SA */
 
-void	ps_swap(t_stack *lst)
+void	ps_swap_sa(t_stack *lst)
 {
 	int	val1;
 	int	val2;
 	t_stack	*tmp;
 
-	if (ps_ll_len(lst) > 1)
+	if (ps_nnodes(lst) > 1)
 	{
 		tmp = lst;
 		val1 = lst->value;
@@ -55,30 +55,37 @@ void	ps_swap(t_stack *lst)
 		tmp->next->value = val1;
 		lst = tmp;
 	}
+	ft_putstr_fd("sa\n", 1);
 }
 
-void	ps_swap_sync(t_stack *lst1, t_stack *lst2)
+void	ps_swap_sb(t_stack *lst)
 {
 	int	val1;
 	int	val2;
 	t_stack	*tmp;
 
-	if (ps_ll_len(lst1) > 1)
+	if (ps_nnodes(lst) > 1)
 	{
-		tmp = lst1;
-		val1 = lst1->value;
-		val2 = lst1->next->value;
+		tmp = lst;
+		val1 = lst->value;
+		val2 = lst->next->value;
 		tmp->value = val2;
 		tmp->next->value = val1;
-		lst1 = tmp;
+		lst = tmp;
 	}
-	if (ps_ll_len(lst2) > 1)
+	ft_putstr_fd("sb\n", 1);
+}
+
+
+void	ps_swap_ss(t_stack *lst1, t_stack *lst2)
+{
+	if (ps_nnodes(lst1) > 1)
 	{
-		tmp = lst2;
-		val1 = lst2->value;
-		val2 = lst2->next->value;
-		tmp->value = val2;
-		tmp->next->value = val1;
-		lst2 = tmp;
+		ps_swap_a(lst1);
 	}
+	if (ps_nnodes(lst2) > 1)
+	{
+		ps_swap_b(lst2);
+	}
+	ft_putstr_fd("ss\n", 1);
 }

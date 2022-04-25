@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_countlines_fd.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/01/16 12:25:14 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/04/15 21:06:39 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+int	ft_countlines_fd(int fd)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
+	char	buff[1];
+	int		count;
+	int		nbytes;
 
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	buff[0] = '\0';
+	nbytes = 1;
+	count = 0;
+	while (nbytes)
+	{
+		nbytes = read(fd, buff, 1);
+		if (ft_strchr(buff, '\n') || ft_strchr(buff, '\0'))
+			count++;
+	}
+	return (count);
 }

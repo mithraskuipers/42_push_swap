@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_undigits_base.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2021/11/19 16:49:20 by mikuiper      #+#    #+#                 */
+/*   Updated: 2021/11/19 16:49:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-typedef struct s_stack
+int	ft_undigits_base(unsigned long long n, int base)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
+	int	ndigits;
 
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	if (n == 0)
+		return (1);
+	ndigits = 0;
+	while (n > 0)
+	{
+		n = n / base;
+		ndigits++;
+	}
+	return (ndigits);
 }

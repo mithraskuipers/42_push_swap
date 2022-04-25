@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_ndigits_base.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2021/11/17 12:02:25 by mikuiper      #+#    #+#                 */
+/*   Updated: 2021/11/28 13:31:05 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+int	ft_ndigits_base(long long n, int base)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
+	int	i;
 
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	i = 0;
+	if (n < 0)
+	{
+		n = n * -1;
+		i++;
+	}
+	while (n > 0)
+	{
+		n /= base;
+		i++;
+	}
+	return (i);
 }

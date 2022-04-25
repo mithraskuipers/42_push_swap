@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_strlcpy.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2021/10/06 19:27:01 by mikuiper      #+#    #+#                 */
+/*   Updated: 2021/10/27 18:42:16 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
+	size_t	i;
 
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	i = 0;
+	if (!(dst) || (!(src)) || (dstsize == 0))
+		return (ft_strlen(src));
+	while ((src[i]) && (i < (dstsize - 1)))
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (ft_strlen(src));
 }

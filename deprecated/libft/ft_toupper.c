@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_toupper.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2021/10/07 16:35:14 by mikuiper      #+#    #+#                 */
+/*   Updated: 2021/10/26 22:13:12 by mkuipers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+int	ft_toupper(int c)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
-
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return (c);
 }

@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_bzero.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2021/10/06 11:51:14 by mikuiper      #+#    #+#                 */
+/*   Updated: 2021/10/29 13:10:03 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+void	ft_bzero(void *s, size_t n)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
-
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	ft_memset(s, 0, n);
 }

@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_strlen_char.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/01/18 18:11:47 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/04/15 21:07:20 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+int	ft_strlen_char(char *s, int c)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
+	int	i;
 
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	i = 0;
+	if (!s)
+		return (i);
+	if (c == '\0')
+	{
+		while (s[i])
+			i++;
+		return (i);
+	}
+	else
+	{
+		while (s[i] && s[i] != c)
+		{
+			i++;
+		}
+		return (i);
+	}
 }

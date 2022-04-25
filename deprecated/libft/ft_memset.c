@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_memset.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2021/10/05 19:52:37 by mikuiper      #+#    #+#                 */
+/*   Updated: 2021/10/27 18:23:15 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+void	*ft_memset(void *b, int c, size_t len)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
+	size_t			i;
+	unsigned char	*b_uc;
 
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	i = 0;
+	b_uc = (unsigned char *)b;
+	while (i < len)
+	{
+		b_uc[i] = (unsigned char)c;
+		i++;
+	}
+	return (b);
 }

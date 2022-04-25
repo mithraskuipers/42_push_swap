@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_strndup.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/04/05 17:52:49 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/04/05 17:53:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+char	*ft_strndup(char *src, int len)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
+	int		i;
+	char	*s;
 
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	i = 0;
+	if ((!(src)) || (len == 0))
+		return (NULL);
+	s = malloc(sizeof(char) * len + 1);
+	while ((src[i]) && (i < (len - 1)))
+	{
+		s[i] = src[i];
+		i++;
+	}
+	s[i] = '\0';
+	return (s);
 }

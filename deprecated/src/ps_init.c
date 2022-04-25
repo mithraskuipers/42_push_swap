@@ -6,11 +6,20 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/16 15:46:59 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 18:24:29 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/04/25 22:42:17 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+
+
+
+
+
+
+
+
 
 /*
 init_stack()
@@ -19,11 +28,13 @@ Note that this function able to parse string literals placed inbetween separate
 argument values.
 */
 
+
 t_stack	*init_stack(char **argv, t_stack *stack)
 {
 	int	arg;
 	int nbr;
 	char **split;
+	int tmp;
 
 	arg = 1;
 	while (argv[arg])
@@ -35,9 +46,11 @@ t_stack	*init_stack(char **argv, t_stack *stack)
 		while (split[nbr])
 		{
 			ps_isvalid(split[nbr]);
-			ps_addlast(&stack, ps_new_element(ps_nnodes(stack), ft_atoi(split[nbr])));
+			tmp = ft_atoi(split[nbr]);
+			ps_addlast(&stack, ps_new_element(ps_nnodes(*stack), tmp));
 			nbr++;
 		}
+		dp_clean_char(split);
 		arg++;
 	}
 	ps_hasduplicates(stack);

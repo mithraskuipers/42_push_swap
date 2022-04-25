@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_memcmp.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2021/10/09 15:11:46 by mikuiper      #+#    #+#                 */
+/*   Updated: 2021/10/27 19:26:03 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
+	unsigned char	*s1_uc;	
+	unsigned char	*s2_uc;
+	size_t			i;
 
-
-int	main(int argc, char **argv)
-{
-
+	s1_uc = (unsigned char *)s1;
+	s2_uc = (unsigned char *)s2;
+	i = 0;
+	if (!(s1_uc) && (!(s2_uc)))
+		return (0);
+	while (i < n)
+	{
+		if (s1_uc[i] != s2_uc[i])
+			return (s1_uc[i] - s2_uc[i]);
+		i++;
+	}
 	return (0);
 }

@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_strchr_pos.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/04/07 14:56:42 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/04/07 15:11:36 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+int	ft_strchr_pos(const char *s, int c)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
+	int		i;
+	char	*s_uc;
 
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	i = 0;
+	s_uc = (char *)s;
+	while (s_uc[i])
+	{
+		if (s_uc[i] == (char)c)
+			return (i);
+		i++;
+	}
+	if (s_uc[i] == (char)c)
+		return (i);
+	return (-1);
 }

@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_lstdelone_bonus.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2021/10/29 13:35:10 by mikuiper      #+#    #+#                 */
+/*   Updated: 2021/10/29 13:35:11 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
-
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	if ((!(lst)) || (!(del)))
+		return ;
+	del(lst->content);
+	free(lst);
 }
+
+/*
+ft_lstdelone(2) first checks whether the user has inputted a linked list or a 
+'deletion function'. If not, it returns the function. Otherwise, using del(), 
+it removes the content that 'lst' is pointing towards.
+*/

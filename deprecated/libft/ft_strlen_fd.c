@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_strlen_fd.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/01/16 12:25:17 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/04/15 21:07:11 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+int	ft_strlen_fd(int fd)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
+	char	buff[1];
+	int		len;
+	int		nbytes;
 
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	buff[0] = '\0';
+	nbytes = 1;
+	len = 0;
+	while (nbytes)
+	{
+		nbytes = read(fd, buff, 1);
+		if (buff[0] != '\n')
+		{
+			len++;
+		}
+		else
+		{
+			break ;
+		}
+	}
+	return (len);
 }

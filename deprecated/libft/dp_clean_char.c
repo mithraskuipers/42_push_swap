@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   dp_clean_char.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/04/07 15:10:37 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/04/15 21:08:31 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+void	dp_clean_char(char **dp)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
+	size_t	i;
 
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	i = 0;
+	while (dp[i])
+	{
+		free(dp[i]);
+		i++;
+	}
+	free(dp);
 }

@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_striteri.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2021/10/16 15:30:13 by mikuiper      #+#    #+#                 */
+/*   Updated: 2021/10/28 12:29:44 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
+	size_t	i;
 
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	i = 0;
+	if ((!(s)) || (!(f)))
+		return ;
+	while (s[i])
+	{
+		f(i, (s + i));
+		i++;
+	}
 }

@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_toabs.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2021/11/17 13:41:28 by mikuiper      #+#    #+#                 */
+/*   Updated: 2021/11/19 16:00:26 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+int	ft_toabs(int n)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
-
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	if (n < 0)
+		n = (n * -1);
+	return (n);
 }

@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_lstsize_bonus.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2021/10/29 13:35:41 by mikuiper      #+#    #+#                 */
+/*   Updated: 2021/10/29 13:35:42 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+int	ft_lstsize(t_list *lst)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
+	size_t	i;
 
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }
+
+/*
+While the linked list 'lst' has not reached its end, I keep jumping to the
+next element in the list. While doing this, I keep track of a counter var 'i', 
+that informs me how many elements there inside 'lst'
+*/

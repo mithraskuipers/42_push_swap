@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/16 22:47:04 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 17:53:14 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/04/25 22:42:06 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ t_stack	*ps_getlast_node(t_stack *lst)
 	return (NULL);
 }
 
-int	ps_nnodes(t_stack *lst)
+int	ps_nnodes(t_stack **lst)
 {
 	int	i;
 
 	i = 0;
-	while (lst)
+	while (*lst)
 	{
-		lst = lst->next;
+		*lst = *lst->next;
 		i++;
 	}
 	return (i);

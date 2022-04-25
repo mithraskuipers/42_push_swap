@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_memcpy.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/25 23:26:57 by mikuiper      ########   odam.nl         */
+/*   Created: 2021/10/06 14:38:25 by mikuiper      #+#    #+#                 */
+/*   Updated: 2021/10/29 08:19:41 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-typedef struct s_stack
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
-}				t_stack;
+	unsigned char	*dst_uc;
+	unsigned char	*src_uc;
+	size_t			i;
 
-
-int	main(int argc, char **argv)
-{
-
-	return (0);
+	dst_uc = (unsigned char *)dst;
+	src_uc = (unsigned char *)src;
+	i = 0;
+	if ((dst == NULL) && (src == NULL))
+		return (NULL);
+	while (i < n)
+	{
+		dst_uc[i] = src_uc[i];
+		i++;
+	}
+	return (dst);
 }

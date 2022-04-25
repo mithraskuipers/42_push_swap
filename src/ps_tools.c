@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/16 22:47:04 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/23 18:15:05 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/04/25 17:53:14 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,33 @@ int	ps_nnodes(t_stack *lst)
 		i++;
 	}
 	return (i);
+}
+
+void	print_list(t_stack *stack_a, t_stack *stack_b)
+{
+	if (!stack_a)
+		printf("List a NULL\n\n");
+	else
+	{
+		printf("List a:\n");
+		while (stack_a->next)
+		{
+			printf("%d=%d\n", stack_a->index, stack_a->value);
+			stack_a = stack_a->next;
+		}
+		printf("%d=%d\n\n", stack_a->index, stack_a->value);
+	}
+	if (!stack_b)
+		printf("List b NULL\n");
+	else
+	{
+		printf("List b:\n");
+		while (stack_b->next)
+		{
+			printf("%d=%d\n", stack_b->index, stack_b->value);
+			stack_b = stack_b->next;
+		}
+		printf("%d=%d\n", stack_b->index, stack_b->value);
+	}
+	printf("\n---\n\n");
 }

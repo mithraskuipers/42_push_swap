@@ -25,9 +25,8 @@ t_stack	*ps_new_element(int index, int value);
 t_stack	*init_stack(char **argv, t_stack *stack);
 void	free_linkednodes(t_stack **stack);
 
-/* push swap commands */
-void	ps_swap_sa(t_stack *lst);
-void	ps_swap_sb(t_stack *lst);
+
+
 int		ps_nnodes(t_stack *lst);
 void	ps_swap_sync(t_stack *lst1, t_stack *lst2);
 void	ps_push(t_stack **lst, t_stack *new);

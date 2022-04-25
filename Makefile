@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/15 21:13:40 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/04/19 09:52:28 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/04/25 12:42:05 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS		=	$(SRC_DIR)main.c \
 				$(SRC_DIR)ps_error.c \
 				$(SRC_DIR)ps_done.c \
 				$(SRC_DIR)ps_tools.c \
-				$(SRC_DIR)ps_cmds.c
+				$(SRC_DIR)ps_cmds.c \
+				$(SRC_DIR)ps_operations.c
 
 OBJS		= $(SRCS:.c=.o)
 

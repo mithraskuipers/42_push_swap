@@ -20,20 +20,42 @@ typedef struct	s_stack
 	struct s_stack_*previous;
 }				t_stack;
 
-t_stack	*build_stack(char **argv, t_stack *env)
+typedef struct	s_env
 {
-	int	i;
+	t_stack		*stack_a;
+	t_stack		*stack_b;
+}				t_env;
+
+t_stack_a	*parse_input(char **argv, t_env *env)
+{
+	int		i;
+	int		j;
+	int		tmp_value;
+	char	**splitted_args;
+
 	while (argv[i])
 	{
-		ps_addlast(env, )
+		splitted_args = ft_split(argv[i], ' ');
+		if (splitted_args == NULL)
+			exit(1);
+		while (splitted_args[j])
+		{
+
+			// check if input is numeric
+			// check if duplicate
+		}
+		add_node(env->stack_a, new_node(value));
 	}
+	return()
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack	*env;
-	env = build_stack(argv, env);
+	t_env	*env;
+
+	env = ft_calloc(1, sizeof(t_stack));
+	if(!env)
+		exit(1);
+	env = parse_input(argv, env);
 	return (0);
 }
-
-

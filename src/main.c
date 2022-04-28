@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/26 23:42:13 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/04/28 23:38:42 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ t_stack	*parse_input(char **argv, t_env *env)
 	int		i;
 	int		j;
 	char	**splitted_args;
+	i = 0;
+	j = 0;
+	(void)env;
 
 	i = 1;
 	while (argv[i])
@@ -70,13 +73,22 @@ t_stack	*parse_input(char **argv, t_env *env)
 			//tmp = new_node(splitted_args[j]);
 			//printf("%d", tmp->value);
 			//printf("%s", splitted_args[j]);
-			printf("%d", ft_atoi(splitted_args[j]));
+			//printf("%d", ft_atoi(splitted_args[j]));
 
 			j++;
 		}
 		i++;
 	}
 	return (env->stack_a);
+}
+
+void	stack_printer(t_stack **stack)
+{
+	while (*stack)
+	{
+		printf("%d", (*stack)->value);
+		(*stack) = (*stack)->next;
+	}
 }
 
 
@@ -87,8 +99,18 @@ int	main(int argc, char **argv)
 
 	(void)argc;
 	env = ft_calloc(1, sizeof(t_stack));
-	if(!env)
+	if (!env)
 		exit(1);
 	parse_input(argv, env);
+
+	t_stack *tmp;
+	t_stack *tmp2;
+	tmp = new_node(10);
+	tmp2 = new_node(20);
+	//(void)tmp2;
+	//printf("%d", tmp->value);
+	//printf("%d", tmp2->value);
+	add_node(&tmp, tmp2);
+	stack_printer(&tmp);
 	return (0);
 }

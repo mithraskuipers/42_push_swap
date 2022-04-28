@@ -6,14 +6,14 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/15 21:13:40 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/04/25 23:09:23 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/04/28 19:16:14 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= push_swap
 CC			= gcc
-#CFLAGS		= -Wall -Wextra -Werror 
-CFLAGS		= -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror 
+#CFLAGS		= -fsanitize=address
 
 INCS	=	-I./inc
 

@@ -6,9 +6,14 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/02 00:07:41 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/02 00:08:19 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+visualization of operations
+https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
+*/
 
 #include "push_swap.h"
 

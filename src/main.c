@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/01 21:26:33 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/02 00:07:41 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	remove_first_node(t_stack **head)
 	new_head = (*head)->next;
 	(*head) = new_head;
 }
+
 
 void	add_node_back(t_stack **head, t_stack *create_new_node)
 {
@@ -125,15 +126,15 @@ void	stack_printer(t_stack **head)
 	}
 }
 
-void	insert_node(t_stack **head, t_stack *create_new_node, int pos)
+void	insert_node(t_stack **head, t_stack *new_node, int pos)
 {
 	t_stack	*edge_left;
 	t_stack *mem;
 	edge_left = *head;
 	if (pos == 0)
 	{
-		create_new_node->next = edge_left;
-		*head = create_new_node;
+		new_node->next = edge_left;
+		*head = new_node;
 	}
 	else
 	{
@@ -143,20 +144,69 @@ void	insert_node(t_stack **head, t_stack *create_new_node, int pos)
 			pos--;
 		}
 		mem = edge_left->next;
-		edge_left->next = create_new_node;
-		create_new_node->next = mem;
+		edge_left->next = new_node;
+		new_node->next = mem;
 	}
 }
 
-void	swap_a(t_stack **head)
+void	swap(t_stack **head)
 {
-	//t_stack	*tmp;
+	t_stack *tmp;
 	
-	//tmp = *head;
-	*head = (*head)->next;
-	//add_node_front(head, tmp);
+	tmp = pop_node_front(head);
+	insert_node(head, tmp, 1);
+}
+
+void	swap_s(t_stack **head1, t_stack **head2)
+{
+	t_stack *tmp;
+	
+	tmp = pop_node_front(head1);
+	insert_node(head1, tmp, 1);
+	tmp = pop_node_front(head2);
+	insert_node(head2, tmp, 1);
+}
+
+/*
+void	remove_node(t_stack **head, int pos)
+{
+	t_stack	*prev;
+	//t_stack *cur;
+	t_stack *next;
+	while (pos > 0)
+	{
+		prev = (*head);
+		//cur = (*head)->next;
+		next = (*head)->next->next;
+		pos--;
+	}
+	prev->next = next;
+	//cur->next = next->next;
+}
+*/
+
+// werkt, maar protect zodat je niet out of bounds
+// als pos groter dan len, pak dan len
+void	remove_node(t_stack **head, int pos)
+{
+	t_stack	*edge_left;
+	t_stack *right;
+	edge_left = *head;
+	while ((pos > 1) && (edge_left->next))
+	{
+		edge_left = edge_left->next;
+		pos--;
+	}
+	right = edge_left->next->next;
+	edge_left->next = right;
+}
+
+/*
+void	rotate(t_stack **head)
+{
 	
 }
+*/
 
 int	main(int argc, char **argv)
 {
@@ -178,13 +228,16 @@ int	main(int argc, char **argv)
 	//t_stack *tmp;
 	//remove_first_node(&head);
 	//insert_node(&head, create_new_node(99), 0);
-	//swap_a(&head);
-	t_stack *tmp;
+	//swap(&head);
+	//t_stack *tmp;
 
-	tmp = pop_node_front(&head);
+	//tmp = pop_node_front(&head);
+	//printf("\n");
+	//stack_printer(&tmp);
+	//swap(&head);
+	//remove_last_node(&head);
+	remove_node(&head, 4);
 	stack_printer(&head);
-	printf("\n");
-	stack_printer(&tmp);
 	//printf("\n\n");
 	//stack_printer(&tmp);
 	return (0);

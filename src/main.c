@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/02 00:08:19 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/02 14:29:54 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct	s_stack
 	int	value;
 	int	index;
 	struct s_stack *next;
-	struct s_stack_*previous;
+	struct s_stack *previous;
 }				t_stack;
 
 typedef struct	s_env
@@ -39,24 +39,28 @@ void	remove_first_node(t_stack **head)
 	(*head) = new_head;
 }
 
-
-void	add_node_back(t_stack **head, t_stack *create_new_node)
+void	add_node_back(t_stack **head, t_stack *new_node)
 {
 	t_stack	*tmp;
+	t_stack *prev;
 
 	tmp = *head;
 	while (tmp->next)
+	{
+		prev = tmp;
 		tmp = tmp->next;
-	tmp->next = create_new_node;
+	}
+	tmp->previous = prev;
+	tmp->next = new_node;
 }
 
-void	add_node_front(t_stack **head, t_stack *create_new_node)
+void	add_node_front(t_stack **head, t_stack *new_node)
 {
 	t_stack	*tmp;
 
 	tmp = *head;
-	create_new_node->next = tmp;
-	*head = create_new_node;
+	new_node->next = tmp;
+	*head = new_node;
 }
 
 t_stack	*ret_last_node(t_stack **head)
@@ -122,12 +126,29 @@ t_stack	*parse_input(char **argv, t_env *env)
 	return (env->stack_a);
 }
 
-void	stack_printer(t_stack **head)
+void	print_forwards(t_stack **head)
 {
 	while (*head)
 	{
 		printf("index [%d] value %d \n", (*head)->index, (*head)->value);
 		(*head) = (*head)->next;
+	}
+}
+
+void	print_backwards(t_stack **head)
+{
+	t_stack *tmp;
+	while ((*head)->next)
+	{
+		//printf("index [%d] value %d \n", (*head)->index, (*head)->value);
+		(*head) = (*head)->next;
+	}
+	tmp = (*head);
+	while (tmp->previous)
+	{
+		tmp = tmp->previous;
+		printf("index [%d] value %d \n", tmp->index, tmp->value);
+
 	}
 }
 
@@ -172,23 +193,25 @@ void	swap_s(t_stack **head1, t_stack **head2)
 	insert_node(head2, tmp, 1);
 }
 
-/*
-void	remove_node(t_stack **head, int pos)
+
+void	rotate(t_stack **head)
 {
-	t_stack	*prev;
-	//t_stack *cur;
-	t_stack *next;
-	while (pos > 0)
-	{
-		prev = (*head);
-		//cur = (*head)->next;
-		next = (*head)->next->next;
-		pos--;
-	}
-	prev->next = next;
-	//cur->next = next->next;
+	t_stack *tmp;
+
+	tmp = pop_node_front(head);
+	add_node_back(head, tmp);
 }
-*/
+
+void	rotate_s(t_stack **head1, t_stack **head2)
+{
+	t_stack *tmp;
+
+	tmp = pop_node_front(head1);
+	add_node_back(head1, tmp);
+
+	tmp = pop_node_front(head2);
+	add_node_back(head2, tmp);
+}
 
 // werkt, maar protect zodat je niet out of bounds
 // als pos groter dan len, pak dan len
@@ -196,6 +219,7 @@ void	remove_node(t_stack **head, int pos)
 {
 	t_stack	*edge_left;
 	t_stack *right;
+
 	edge_left = *head;
 	while ((pos > 1) && (edge_left->next))
 	{
@@ -206,13 +230,6 @@ void	remove_node(t_stack **head, int pos)
 	edge_left->next = right;
 }
 
-/*
-void	rotate(t_stack **head)
-{
-	
-}
-*/
-
 int	main(int argc, char **argv)
 {
 	t_env	*env;
@@ -222,14 +239,20 @@ int	main(int argc, char **argv)
 		exit(1);
 	parse_input(argv, env);
 
-	t_stack	*head;
-	head = create_new_node(10);
-	add_node_back(&head, create_new_node(20));
-	add_node_back(&head, create_new_node(30));
-	add_node_back(&head, create_new_node(40));
-	add_node_back(&head, create_new_node(50));
+	t_stack	*head1;
+	head1 = create_new_node(10);
+	add_node_back(&head1, create_new_node(20));
+	add_node_back(&head1, create_new_node(30));
+	add_node_back(&head1, create_new_node(40));
+	add_node_back(&head1, create_new_node(50));
 
-
+	t_stack	*head2;
+	head2 = create_new_node(11);
+	add_node_back(&head2, create_new_node(22));
+	add_node_back(&head2, create_new_node(33));
+	add_node_back(&head2, create_new_node(44));
+	add_node_back(&head2, create_new_node(55));
+	
 	//t_stack *tmp;
 	//remove_first_node(&head);
 	//insert_node(&head, create_new_node(99), 0);
@@ -238,14 +261,28 @@ int	main(int argc, char **argv)
 
 	//tmp = pop_node_front(&head);
 	//printf("\n");
-	//stack_printer(&tmp);
+	//print_forwards(&tmp);
 	//swap(&head);
 	//remove_last_node(&head);
-	remove_node(&head, 4);
-	stack_printer(&head);
+	//remove_node(&head, 4);
+
+	swap_s(&head1, &head2);
+	rotate_s(&head1, &head2);
+
+	print_forwards(&head1);
+	printf("\n");
+	print_forwards(&head2);
+
+	print_backwards(&head2);
 	//printf("\n\n");
-	//stack_printer(&tmp);
+	//print_forwards(&tmp);
 	return (0);
 } 
 
+
+/*
+TODO
+pointers to previous
+reverse rotate
+*/
 

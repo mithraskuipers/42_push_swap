@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/02 14:29:54 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/03 14:46:35 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,9 @@ void	remove_first_node(t_stack **head)
 
 void	add_node_back(t_stack **head, t_stack *new_node)
 {
-	t_stack	*tmp;
-	t_stack *prev;
-
-	tmp = *head;
-	while (tmp->next)
-	{
-		prev = tmp;
-		tmp = tmp->next;
-	}
-	tmp->previous = prev;
-	tmp->next = new_node;
+	while ((*head)->next)
+		*head = (*head)->next;
+	(*head)->next = new_node;
 }
 
 void	add_node_front(t_stack **head, t_stack *new_node)
@@ -73,13 +65,13 @@ t_stack	*ret_last_node(t_stack **head)
 	return (last_node);
 }
 
-t_stack	*create_new_node(int value)
+t_stack	*create_new_node(int value, int index)
 {
 	t_stack	*node;
 
 	node = malloc(1 * sizeof(t_stack));
 	node->value = value;
-	node->index = 0;
+	node->index = index;
 	node->next = NULL;
 	node->previous = NULL;
 	return (node);
@@ -88,42 +80,10 @@ t_stack	*create_new_node(int value)
 t_stack *pop_node_front(t_stack **head)
 {
 	t_stack *first;
-	first = create_new_node((*head)->value);
+	first = create_new_node((*head)->value, (*head)->index);
 	first->next = NULL;
 	(*head) = (*head)->next;
 	return (first);
-}
-
-t_stack	*parse_input(char **argv, t_env *env)
-{
-	int		i;
-	int		j;
-	char	**splitted_args;
-	i = 0;
-	j = 0;
-	(void)env;
-	i = 1;
-	while (argv[i])
-	{
-		splitted_args = ft_split(argv[i], ' ');
-		if (splitted_args == NULL)
-			exit(1);
-		j = 0;
-		while (splitted_args[j])
-		{
-			// check if input is numeric
-			// check if duplicate
-			//add_node_back(&env->stack_a, create_new_node(ft_atoi(splitted_args[j])));
-			//t_stack	*tmp;
-			//tmp = create_new_node(splitted_args[j]);
-			//printf("%d", tmp->value);
-			//printf("%s", splitted_args[j]);
-			//printf("%d", ft_atoi(splitted_args[j]));
-			j++;
-		}
-		i++;
-	}
-	return (env->stack_a);
 }
 
 void	print_forwards(t_stack **head)
@@ -213,21 +173,133 @@ void	rotate_s(t_stack **head1, t_stack **head2)
 	add_node_back(head2, tmp);
 }
 
-// werkt, maar protect zodat je niet out of bounds
-// als pos groter dan len, pak dan len
+int		n_nodes(t_stack **head)
+{
+	int	i;
+	t_stack *tmp;
+
+	i = 0;
+	tmp = *head;
+	while (tmp->next)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
+}
+
 void	remove_node(t_stack **head, int pos)
 {
 	t_stack	*edge_left;
 	t_stack *right;
 
 	edge_left = *head;
-	while ((pos > 1) && (edge_left->next))
+	if (pos > n_nodes(head))
+		pos = n_nodes(head);
+	if (pos == 0)
+		(*head) = (*head)->next;
+	else
 	{
-		edge_left = edge_left->next;
-		pos--;
+		while ((pos > 1) && (edge_left->next))
+		{
+			edge_left = edge_left->next;
+			pos--;
+		}
+		right = edge_left->next->next;
+		edge_left->next = right;
 	}
-	right = edge_left->next->next;
-	edge_left->next = right;
+}
+
+void	lststack_add_back(t_stack **head, t_stack *new)
+{
+	while((*head)->next)
+	{
+		(*head) = (*head)->next;
+	}
+	(*head)->next = new;
+}
+
+t_stack	*ps_getlast_node(t_stack *lst)
+{
+	while (lst)
+	{
+		if (!(lst->next))
+			return (lst);
+		lst = lst->next;
+	}
+	return (NULL);
+}
+
+void	ps_addlast(t_stack **lst, t_stack *new)
+{
+	t_stack	*final_element;
+
+	if (!(*lst))
+	{
+		*lst = new;
+		return ;
+	}
+	final_element = ps_getlast_node(*lst);
+	final_element->next = new;
+}
+
+int	ps_nnodes(t_stack **lst)
+{
+	int	i;
+
+	i = 0;
+	while (*lst)
+	{
+		*lst = (*lst)->next;
+		i++;
+	}
+	return (i);
+}
+
+t_stack	*ps_new_element(int index, int value)
+{
+	t_stack	*new_elem;
+
+	new_elem = malloc(sizeof(t_stack));
+	if (!(new_elem))
+		return (NULL);
+	new_elem->index = index;
+	new_elem->value = value;
+	new_elem->next = NULL;
+	return (new_elem);
+}
+
+void	parse_input(char **argv, t_stack **head)
+{
+	int		i;
+	int		j;
+	char	**splitted_args;
+	i = 0;
+	j = 0;
+	i = 1;
+
+	while (argv[i])
+	{
+		splitted_args = ft_split(argv[i], ' ');
+		if (splitted_args == NULL)
+			exit(1);
+		j = 0;
+		while (splitted_args[j])
+		{
+			// TODO check if input is numeric
+			// TODO check if duplicate
+			//t_stack *tmp;
+			//tmp = create_new_node(ft_atoi(splitted_args[j]), 1);
+			//add_node_back(&head, tmp);
+			//printf("%d", tmp->value);
+			//printf("%d", ft_atoi(splitted_args[j]));
+			ps_addlast(head, ps_new_element(1, 1));
+			j++;
+		}
+		i++;
+	}
+	print_forwards(head);
+	return ;
 }
 
 int	main(int argc, char **argv)
@@ -237,52 +309,18 @@ int	main(int argc, char **argv)
 	env = ft_calloc(1, sizeof(t_stack));
 	if (!env)
 		exit(1);
-	parse_input(argv, env);
-
-	t_stack	*head1;
-	head1 = create_new_node(10);
-	add_node_back(&head1, create_new_node(20));
-	add_node_back(&head1, create_new_node(30));
-	add_node_back(&head1, create_new_node(40));
-	add_node_back(&head1, create_new_node(50));
-
-	t_stack	*head2;
-	head2 = create_new_node(11);
-	add_node_back(&head2, create_new_node(22));
-	add_node_back(&head2, create_new_node(33));
-	add_node_back(&head2, create_new_node(44));
-	add_node_back(&head2, create_new_node(55));
 	
-	//t_stack *tmp;
-	//remove_first_node(&head);
-	//insert_node(&head, create_new_node(99), 0);
-	//swap(&head);
-	//t_stack *tmp;
+	t_stack **new;
+	//new = NULL;
+	//new = create_new_node(1,0);
+	parse_input(argv, new);
+	//print_forwards(&new);
 
-	//tmp = pop_node_front(&head);
-	//printf("\n");
-	//print_forwards(&tmp);
-	//swap(&head);
-	//remove_last_node(&head);
-	//remove_node(&head, 4);
-
-	swap_s(&head1, &head2);
-	rotate_s(&head1, &head2);
-
-	print_forwards(&head1);
-	printf("\n");
-	print_forwards(&head2);
-
-	print_backwards(&head2);
-	//printf("\n\n");
-	//print_forwards(&tmp);
 	return (0);
 } 
-
 
 /*
 TODO
 pointers to previous
 reverse rotate
 */
-

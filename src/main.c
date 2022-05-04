@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/03 14:46:35 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/04 15:06:14 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,16 +230,16 @@ t_stack	*ps_getlast_node(t_stack *lst)
 	return (NULL);
 }
 
-void	ps_addlast(t_stack **lst, t_stack *new)
+void	ps_addlast(t_stack **head, t_stack *new)
 {
 	t_stack	*final_element;
 
-	if (!(*lst))
+	if (!(*head))
 	{
-		*lst = new;
+		*head = new;
 		return ;
 	}
-	final_element = ps_getlast_node(*lst);
+	final_element = ps_getlast_node(*head);
 	final_element->next = new;
 }
 
@@ -269,6 +269,41 @@ t_stack	*ps_new_element(int index, int value)
 	return (new_elem);
 }
 
+int	mk_iswhitespace(int c)
+{
+	if ((c == ' ') || (c == '\t') || (c == '\v') || (c == '\r') || (c == '\n') \
+	|| (c == '\f'))
+		return (1);
+	return (0);
+}
+
+int	mk_atoi(char *s, int *nbr)
+{
+	int	i;
+	int	sign;
+	int value;
+
+	(void)nbr;
+	i = 0;
+	while (mk_iswhitespace(s[i]))
+		i++;
+	value = 0;
+	sign = 1;
+	if (s[i] == '-' || s[i] == '+')
+	{
+		if (s[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (s[i] >= '0' && s[i] <= '9')
+	{
+		value = (value * 10) + (s[i] - '0');
+		i++;
+	}
+	*nbr = value * sign;
+	return (0);
+}
+
 void	parse_input(char **argv, t_stack **head)
 {
 	int		i;
@@ -293,7 +328,7 @@ void	parse_input(char **argv, t_stack **head)
 			//add_node_back(&head, tmp);
 			//printf("%d", tmp->value);
 			//printf("%d", ft_atoi(splitted_args[j]));
-			ps_addlast(head, ps_new_element(1, 1));
+			ps_addlast(head, ps_new_element(ft_atoi(splitted_args[j]), -1));
 			j++;
 		}
 		i++;
@@ -311,10 +346,15 @@ int	main(int argc, char **argv)
 		exit(1);
 	
 	t_stack **new;
+	new = ft_calloc(1, sizeof(t_stack));
 	//new = NULL;
 	//new = create_new_node(1,0);
 	parse_input(argv, new);
-	//print_forwards(&new);
+	print_forwards(new);
+
+	int tmp;
+	mk_atoi("123", &tmp);
+	printf("%d", tmp);
 
 	return (0);
 } 

@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ps_cmds.c                                          :+:    :+:            */
+/*   cmd_swap.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/04/16 22:57:40 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/05 15:57:40 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/05/05 17:56:37 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/05/05 18:12:03 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_addlast(t_stack **lst, t_stack *new)
+void	swap_a(t_stack **head)
 {
-	t_stack	*final_element;
-
-	if (!(*lst))
-	{
-		*lst = new;
-		return ;
-	}
-	final_element = ps_getlast_node(*lst);
-	final_element->next = new;
+	t_stack *tmp;
+	
+	tmp = pop_node_front(head);
+	insert_node(head, tmp, 1);
 }
 
-void	ps_push(t_stack **lst, t_stack *new)
+void	swap_b(t_stack **head)
 {
-	t_stack	*first_element;
+	t_stack *tmp;
+	
+	tmp = pop_node_front(head);
+	insert_node(head, tmp, 1);
+}
 
-	if (!(*lst))
-	{
-		*lst = new;
-		return ;
-	}
-	first_element = *lst;
-	first_element->next = new;
+void	swap_s(t_stack **head1, t_stack **head2)
+{
+	t_stack *tmp;
+	
+	tmp = pop_node_front(head1);
+	insert_node(head1, tmp, 1);
+	tmp = pop_node_front(head2);
+	insert_node(head2, tmp, 1);
 }

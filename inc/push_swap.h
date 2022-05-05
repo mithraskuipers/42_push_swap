@@ -36,4 +36,19 @@ void	parse_input(char **argv, t_stack **head);
 t_stack	*ps_new_element(int index, int value);
 void	ps_addlast(t_stack **head, t_stack *new);
 
+void	rotate_a(t_stack **head);
+void	rotate_b(t_stack **head);
+void	rotate_s(t_stack **head1, t_stack **head2);
+void	swap_a(t_stack **head);
+void	swap_b(t_stack **head);
+void	swap_s(t_stack **head1, t_stack **head2);
+void	rrotate_a(t_stack **head);
+void	rrotate_b(t_stack **head);
+void	rrotate_s(t_stack **head1, t_stack **head2);
+
+void	add_node_back(t_stack **head, t_stack *new_node);
+void	add_node_front(t_stack **head, t_stack *new_node);
+
+
 #endif
+

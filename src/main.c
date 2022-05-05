@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/05 15:30:00 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/05 18:23:16 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	add_node_back(t_stack **head, t_stack *new_node)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new_node;
-	
 }
 
 void	add_node_front(t_stack **head, t_stack *new_node)
@@ -53,86 +52,6 @@ t_stack	*ret_last_node(t_stack **head)
 	while (last_node)
 		(last_node) = last_node->next;
 	return (last_node);
-}
-
-/* stack instructions */
-
-void	swap_a(t_stack **head)
-{
-	t_stack *tmp;
-	
-	tmp = pop_node_front(head);
-	insert_node(head, tmp, 1);
-}
-
-void	swap_b(t_stack **head)
-{
-	t_stack *tmp;
-	
-	tmp = pop_node_front(head);
-	insert_node(head, tmp, 1);
-}
-
-void	swap_s(t_stack **head1, t_stack **head2)
-{
-	t_stack *tmp;
-	
-	tmp = pop_node_front(head1);
-	insert_node(head1, tmp, 1);
-	tmp = pop_node_front(head2);
-	insert_node(head2, tmp, 1);
-}
-
-void	rotate_a(t_stack **head)
-{
-	t_stack *tmp;
-
-	tmp = pop_node_front(head);
-	add_node_back(head, tmp);
-}
-
-void	rotate_b(t_stack **head)
-{
-	t_stack *tmp;
-
-	tmp = pop_node_front(head);
-	add_node_back(head, tmp);
-}
-
-void	rotate_s(t_stack **head1, t_stack **head2)
-{
-	t_stack *tmp;
-
-	tmp = pop_node_front(head1);
-	add_node_back(head1, tmp);
-	tmp = pop_node_front(head2);
-	add_node_back(head2, tmp);
-}
-
-void	rrotate_a(t_stack **head)
-{
-	t_stack *tmp;
-
-	tmp = pop_node_back(head);
-	add_node_front(head, tmp);
-}
-
-void	rrotate_b(t_stack **head)
-{
-	t_stack *tmp;
-
-	tmp = pop_node_back(head);
-	add_node_front(head, tmp);
-}
-
-void	rrotate_s(t_stack **head1, t_stack **head2)
-{
-	t_stack *tmp;
-
-	tmp = pop_node_back(head1);
-	add_node_front(head1, tmp);
-	tmp = pop_node_back(head2);
-	add_node_front(head2, tmp);
 }
 
 void	lststack_add_back(t_stack **head, t_stack *new)
@@ -194,6 +113,21 @@ t_stack	*ps_new_element(int index, int value)
 	return (new_elem);
 }
 
+void	reset_index(t_stack **head)
+{
+	t_stack	*tmp;
+	int	i;
+
+	tmp = *head;
+	i = 0;
+	while (tmp)
+	{
+		tmp->index = i;
+		i++;
+		tmp = tmp->next;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_env	*env;
@@ -206,6 +140,7 @@ int	main(int argc, char **argv)
 	new = ft_calloc(1, sizeof(t_stack));
 	parse_input(argv, new);
 	//rrotate_a(new);
+	reset_index(new);
 	print_forwards(new);
 	return (0);
 }

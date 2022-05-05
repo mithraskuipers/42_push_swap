@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 15:27:24 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/05 15:50:15 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/05 17:51:34 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	parse_input(char **argv, t_stack **head)
 				dp_clean_char(splitted_args);
 				exit (1);
 			}
-			ps_addlast(head, ps_new_element(value, -1));
+			ps_addlast(head, ps_new_element(-1, value));
 			j++;
 		}
 		dp_clean_char(splitted_args);

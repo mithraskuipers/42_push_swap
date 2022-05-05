@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/22 20:49:59 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/15 21:10:25 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/05 11:38:26 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+
+# define INTMIN -2147483648
+# define INTMAX 2147483647
 
 typedef struct s_list
 {
@@ -90,5 +93,7 @@ char	*ft_strndup(char *src, int len);
 int		ft_strchr_pos(const char *s, int c);
 void	dp_clean_char(char **dp);
 void	dp_clean_void(char **dp);
+int		mk_iswhitespace(int c);
+int		mk_atoi(char *s, int *nbr);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/15 21:13:40 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/05/03 13:57:01 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/05/05 15:28:14 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ INCS	=	-I./inc
 
 SRC_DIR		= ./src/
 
-SRCS		=	$(SRC_DIR)main.c
+SRCS		=	$(SRC_DIR)main.c \
+				$(SRC_DIR)stack_tools.c \
+				$(SRC_DIR)parse_input.c
 
 OBJS		= $(SRCS:.c=.o)
 

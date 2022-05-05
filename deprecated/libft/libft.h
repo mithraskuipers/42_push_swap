@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/22 20:49:59 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/04/15 21:10:25 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/05 10:27:45 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ char	*ft_strndup(char *src, int len);
 int		ft_strchr_pos(const char *s, int c);
 void	dp_clean_char(char **dp);
 void	dp_clean_void(char **dp);
+int		mk_iswhitespace(int c);
 
 #endif

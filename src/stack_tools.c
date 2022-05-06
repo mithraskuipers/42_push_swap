@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 12:47:46 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/06 12:25:33 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/06 12:29:47 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,13 +110,15 @@ void	remove_node(t_stack **head, int pos)
 
 void	print_forwards(t_stack **head)
 {
-	int	i;
+	int		i;
+	t_stack	*tmp;
 
 	i = 0;
-	while (*head)
+	tmp = *head;
+	while (tmp)
 	{
-		printf("node %d: %d [%d]\n", i, (*head)->value, (*head)->index);
-		(*head) = (*head)->next;
+		printf("node %d: %d [%d]\n", i, (tmp)->value, (tmp)->index);
+		(tmp) = (tmp)->next;
 		i++;
 	}
 }

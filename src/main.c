@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/05 18:23:16 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/06 12:25:55 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,9 @@ int	main(int argc, char **argv)
 	t_stack **new;
 	new = ft_calloc(1, sizeof(t_stack));
 	parse_input(argv, new);
-	//rrotate_a(new);
-	reset_index(new);
-	print_forwards(new);
+	if (ps_hasduplicates(new))
+		msg_exit("Error. Input contains duplicates.", 1);
+	if (ps_isordered(new))
+		msg_exit("Error. Input is already ordered", 1);
 	return (0);
 }

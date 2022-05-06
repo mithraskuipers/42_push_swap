@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 12:47:46 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/05 12:53:46 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/06 12:25:33 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,102 @@ void	remove_node(t_stack **head, int pos)
 
 void	print_forwards(t_stack **head)
 {
+	int	i;
+
+	i = 0;
 	while (*head)
 	{
-		printf("index [%d] value %d \n", (*head)->index, (*head)->value);
+		printf("node %d: %d [%d]\n", i, (*head)->value, (*head)->index);
 		(*head) = (*head)->next;
+		i++;
 	}
+}
+
+/*
+ps_isordered()
+Checks whether the elements in the linked list are numerically ordered,
+from smallest to largest. If ordered, it returns 1. Else 0.
+*/
+
+int	ps_isordered(t_stack **head)
+{
+	int		previous;
+	t_stack	*tmp;
+
+	tmp = *head;
+	previous = tmp->value;
+	while (tmp)
+	{
+		if (tmp->value < previous)
+			return (0);
+		previous = tmp->value;
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+/*
+ps_hasduplicates()
+Checks whether the linked list contains duplicate values.
+If so, it calls msg_exit() which exits the program.
+*/
+
+int	ps_hasduplicates(t_stack **head)
+{
+	int		match;
+	t_stack	*i;
+	t_stack	*j;
+
+	i = *head;
+	j = *head;
+	while (i)
+	{
+		match = 0;
+		while (j)
+		{
+			if (i->value == j->value)
+				match++;
+			if (match == 2)
+				return (1);
+			j = j->next;
+		}
+		i = i->next;
+		j = *head;
+	}
+	return (0);
+}
+
+/*
+ps_isvalid()
+Checks whether user input is numeric. If not, exit the program.
+It checks every character in the string for being either a digit, space, 
+minus/plus sign character. If not, it prints an error statement and exits the
+program with exit code 1.
+*/
+
+void	ps_isvalid(char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (!ft_isdigit(s[i]) && s[i] != ' ' && s[i] != '-' && s[i] != '+')
+			msg_exit("Error", 1);
+		if (s[i] == '-' && !ft_isdigit(s[i+1]))
+			msg_exit("Error", 1);
+		i++;
+	}
+}
+
+/*
+msg_exit()
+Prints error statement to the standard error, followed by exiting the program.
+*/
+
+void	msg_exit(char *s, int exit_code)
+{
+	ft_putstr_fd(s, 2);
+	ft_putstr_fd("\n", 2);
+	exit(exit_code);
 }

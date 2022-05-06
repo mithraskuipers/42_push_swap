@@ -45,9 +45,15 @@ void	swap_s(t_stack **head1, t_stack **head2);
 void	rrotate_a(t_stack **head);
 void	rrotate_b(t_stack **head);
 void	rrotate_s(t_stack **head1, t_stack **head2);
+void	push_a(t_stack **head1, t_stack **head2);
+void	push_b(t_stack **head1, t_stack **head2);
 
 void	add_node_back(t_stack **head, t_stack *new_node);
 void	add_node_front(t_stack **head, t_stack *new_node);
+
+int		ps_isordered(t_stack **stack);
+int		ps_hasduplicates(t_stack **head);
+void	msg_exit(char *s, int exit_code);
 
 
 #endif

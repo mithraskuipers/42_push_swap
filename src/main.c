@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/06 12:29:51 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/06 15:31:19 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ int	main(int argc, char **argv)
 	env = ft_calloc(1, sizeof(t_stack));
 	if (!env)
 		exit(1);
-
 	t_stack **new;
 	new = ft_calloc(1, sizeof(t_stack));
 	parse_input(argv, new);

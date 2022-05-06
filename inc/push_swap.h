@@ -13,7 +13,7 @@
 
 typedef struct	s_stack
 {
-	int	value;
+	int	val;
 	int	index;
 	struct s_stack *next;
 	struct s_stack *previous;
@@ -25,7 +25,7 @@ typedef struct	s_env
 	t_stack		*stack_b;
 }				t_env;
 
-t_stack	*create_new_node(int value, int index);
+t_stack	*create_new_node(int val, int index);
 t_stack *pop_node_front(t_stack **head);
 void	insert_node(t_stack **head, t_stack *new_node, int pos);
 t_stack	*pop_node_back(t_stack **head);
@@ -33,7 +33,7 @@ int		n_nodes(t_stack **head);
 void	remove_node(t_stack **head, int pos);
 void	print_forwards(t_stack **head);
 void	parse_input(char **argv, t_stack **head);
-t_stack	*ps_new_element(int index, int value);
+t_stack	*ps_new_element(int index, int val);
 void	ps_addlast(t_stack **head, t_stack *new);
 
 void	rotate_a(t_stack **head);

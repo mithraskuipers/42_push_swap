@@ -6,28 +6,47 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 12:47:46 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/06 12:29:47 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/06 21:10:47 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*create_new_node(int value, int index)
+t_stack	*create_new_node(int val, int index)
 {
 	t_stack	*node;
 
 	node = malloc(1 * sizeof(t_stack));
-	node->value = value;
+	node->val = val;
 	node->index = index;
 	node->next = NULL;
 	node->previous = NULL;
 	return (node);
 }
 
+void	add_node_back(t_stack **head, t_stack *new_node)
+{
+	t_stack *tmp;
+
+	tmp = (*head);
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new_node;
+}
+
+void	add_node_front(t_stack **head, t_stack *new_node)
+{
+	t_stack	*tmp;
+
+	tmp = *head;
+	new_node->next = tmp;
+	*head = new_node;
+}
+
 t_stack *pop_node_front(t_stack **head)
 {
 	t_stack *first;
-	first = create_new_node((*head)->value, (*head)->index);
+	first = create_new_node((*head)->val, (*head)->index);
 	first->next = NULL;
 	(*head) = (*head)->next;
 	return (first);
@@ -63,9 +82,7 @@ t_stack	*pop_node_back(t_stack **head)
 	
 	tmp = *head;
 	while (tmp->next->next)
-	{
 		tmp = tmp->next;
-	}
 	popped = tmp->next;
 	tmp->next = NULL;
 	return (popped);
@@ -78,7 +95,7 @@ int		n_nodes(t_stack **head)
 
 	i = 0;
 	tmp = *head;
-	while (tmp->next)
+	while (tmp)
 	{
 		tmp = tmp->next;
 		i++;
@@ -117,7 +134,7 @@ void	print_forwards(t_stack **head)
 	tmp = *head;
 	while (tmp)
 	{
-		printf("node %d: %d [%d]\n", i, (tmp)->value, (tmp)->index);
+		printf("node %d: %d [%d]\n", i, (tmp)->val, (tmp)->index);
 		(tmp) = (tmp)->next;
 		i++;
 	}
@@ -135,12 +152,12 @@ int	ps_isordered(t_stack **head)
 	t_stack	*tmp;
 
 	tmp = *head;
-	previous = tmp->value;
+	previous = tmp->val;
 	while (tmp)
 	{
-		if (tmp->value < previous)
+		if (tmp->val < previous)
 			return (0);
-		previous = tmp->value;
+		previous = tmp->val;
 		tmp = tmp->next;
 	}
 	return (1);
@@ -148,7 +165,7 @@ int	ps_isordered(t_stack **head)
 
 /*
 ps_hasduplicates()
-Checks whether the linked list contains duplicate values.
+Checks whether the linked list contains duplicate vals.
 If so, it calls msg_exit() which exits the program.
 */
 
@@ -165,7 +182,7 @@ int	ps_hasduplicates(t_stack **head)
 		match = 0;
 		while (j)
 		{
-			if (i->value == j->value)
+			if (i->val == j->val)
 				match++;
 			if (match == 2)
 				return (1);

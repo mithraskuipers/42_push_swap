@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/06 21:10:12 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/07 17:56:24 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,15 +159,10 @@ void insertionSort(t_stack** head_ref){
     *head_ref=sorted;
 }
 
-
-/*
 void	sort_2(t_stack **head)
 {
-	rotate_a(head);
 	swap_a(head);
 }
-*/
-
 
 void	sort_3(t_stack **head)
 {
@@ -210,8 +205,19 @@ int	main(int argc, char **argv)
 	//insertionSort(new);
 	if (ps_isordered(new))
 		msg_exit("Error. Input is already ordered", 1);
-	if (n_nodes(new) == 3)
+
+	if (n_nodes(new) == 2)
+	{
+		printf("HEY!\n");
+		sort_2(new);
+	}
+	else if (n_nodes(new) == 3)
 		sort_3(new);
+
+	/*
+	if (n_nodes(new) == 5)
+		sort_5(new);
+	*/
 	print_forwards(new);
 	/*
 	if (ps_hasduplicates(new))

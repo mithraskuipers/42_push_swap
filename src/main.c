@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/07 17:56:24 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/10 20:25:58 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,5 +224,7 @@ int	main(int argc, char **argv)
 		msg_exit("Error. Input contains duplicates.", 1);
 
 	*/
+
+	printf("%d", INT_MAX);
 	return (0);
 }

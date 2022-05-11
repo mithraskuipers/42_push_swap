@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/10 20:25:58 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/11 10:31:19 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,76 @@ void	sort_3(t_stack **head)
 		rrotate_a(head);
 }
 
+void	simple_indexer(t_stack **head)
+{
+	int		i;
+	t_stack	*tmp;
+
+	i = 0;
+	tmp = *head;
+	while (tmp)
+	{
+		tmp->index = i;
+		i++;
+		tmp = tmp->next;
+	}
+}
+
+int		get_min(t_stack **head)
+{
+	int		tmp_min;
+	t_stack	*tmp;
+	
+	tmp = *head;
+	tmp_min = tmp->val;
+	while (tmp)
+	{
+		if (tmp_min > tmp->val)
+			tmp_min = tmp->val;
+		tmp = tmp->next;
+	}
+	return (tmp_min);
+}
+
+int		get_max(t_stack **head)
+{
+	int		tmp_max;
+	t_stack	*tmp;
+	
+	tmp = *head;
+	tmp_max = tmp->val;
+	while (tmp)
+	{
+		if (tmp_max < tmp->val)
+			tmp_max = tmp->val;
+		tmp = tmp->next;
+	}
+	return (tmp_max);
+}
+
+
+int	get_pos_for_value(t_stack **head, int value)
+{
+	int		i;
+	t_stack *tmp;
+	
+	i = 0;
+	tmp = *head;
+	while (tmp)
+	{
+		if (tmp->val == value)
+			return (i);
+		tmp = tmp->next;
+		i++;
+	}
+	return(-1);
+}
+
+void	sort_4(t_stack **head)
+{
+
+}
+
 int	main(int argc, char **argv)
 {
 	t_env	*env;
@@ -205,6 +275,8 @@ int	main(int argc, char **argv)
 	//insertionSort(new);
 	if (ps_isordered(new))
 		msg_exit("Error. Input is already ordered", 1);
+	if (ps_hasduplicates(new))
+		msg_exit("Error. Input contains duplicates.", 1);
 
 	if (n_nodes(new) == 2)
 	{
@@ -218,13 +290,14 @@ int	main(int argc, char **argv)
 	if (n_nodes(new) == 5)
 		sort_5(new);
 	*/
+
+	//simple_indexer(new);
+	sort_4(new);
 	print_forwards(new);
-	/*
-	if (ps_hasduplicates(new))
-		msg_exit("Error. Input contains duplicates.", 1);
 
-	*/
+	//printf("%d", get_pos_for_value(new, 44));
 
-	printf("%d", INT_MAX);
+
+	//printf("%d", INT_MAX);
 	return (0);
 }

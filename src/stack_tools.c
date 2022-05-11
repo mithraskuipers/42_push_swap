@@ -20,7 +20,6 @@ t_stack	*create_new_node(int val, int index)
 	node->val = val;
 	node->index = index;
 	node->next = NULL;
-	node->previous = NULL;
 	return (node);
 }
 

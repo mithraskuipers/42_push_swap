@@ -239,7 +239,7 @@ int		get_max(t_stack **head)
 }
 
 
-int	get_pos_for_value(t_stack **head, int value)
+int	get_idx_for_val(t_stack **head, int value)
 {
 	int		i;
 	t_stack *tmp;
@@ -256,8 +256,12 @@ int	get_pos_for_value(t_stack **head, int value)
 	return(-1);
 }
 
-void	sort_4(t_stack **head)
+void	sort_4(t_stack **stack_a)
 {
+	int	i;
+
+	i = get_idx_for_val(stack_a, get_min(stack_a));
+	printf("-->%d\n", i);
 
 }
 
@@ -265,39 +269,69 @@ int	main(int argc, char **argv)
 {
 	t_env	*env;
 	(void)argc;
-	env = ft_calloc(1, sizeof(t_stack));
+	env = ft_calloc(1, sizeof(t_env));
 	if (!env)
 		exit(1);
-	t_stack **new;
-	new = ft_calloc(1, sizeof(t_stack));
-	parse_input(argv, new);
+	parse_input(argv, &env->stack_a);
 	//reset_index(new);
 	//insertionSort(new);
-	if (ps_isordered(new))
+	if (ps_isordered(&env->stack_a))
 		msg_exit("Error. Input is already ordered", 1);
-	if (ps_hasduplicates(new))
+	if (ps_hasduplicates(&env->stack_a))
 		msg_exit("Error. Input contains duplicates.", 1);
 
-	if (n_nodes(new) == 2)
+	if (n_nodes(&env->stack_a) == 2)
 	{
 		printf("HEY!\n");
-		sort_2(new);
+		sort_2(&env->stack_a);
 	}
-	else if (n_nodes(new) == 3)
-		sort_3(new);
+	else if (n_nodes(&env->stack_a) == 3)
+		sort_3(&env->stack_a);
 
 	/*
-	if (n_nodes(new) == 5)
-		sort_5(new);
+	if (n_nodes(&env->stack_a) == 5)
+		sort_5(&env->stack_a);
 	*/
 
-	//simple_indexer(new);
-	sort_4(new);
-	print_forwards(new);
+	simple_indexer(&env->stack_a);
+	sort_4(&env->stack_a);
+	print_forwards(&env->stack_a);
 
-	//printf("%d", get_pos_for_value(new, 44));
+	//printf("%d", get_idx_for_val(&env->stack_a, 44));
 
 
 	//printf("%d", INT_MAX);
 	return (0);
 }
+
+/*
+void	stack_sort_4(t_stack *stack_a)
+{
+	int		i;
+	t_stack	*stack_b;
+
+	stack_b = stack_initialisation();
+	i = stack_min_pos(stack_a);
+	if (stack_a->head->index > stack_a->head->next->index)
+		stack_swap(stack_a, 'a');
+	if (stack_sort_ok(stack_a) == 1)
+	{
+		if (i <= stack_a->size / 2)
+		{
+			while (stack_a->head->index != stack_a->id_min)
+				stack_rotate(stack_a, 'a');
+		}
+		else
+		{
+			while (stack_a->head->index != stack_a->id_min)
+				stack_reverse_rotate(stack_a, 'a');
+		}
+		stack_push(stack_b, stack_a, 'b');
+		stack_sort_3(stack_a);
+		stack_push(stack_a, stack_b, 'a');
+	}	
+	free(stack_b);
+}
+*/
+
+// Plaats de stacks in 1 enkele struct, genaamd env

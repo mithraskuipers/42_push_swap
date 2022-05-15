@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/11 10:31:19 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/15 12:07:16 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,58 +107,6 @@ void	reset_index(t_stack **head)
 	}
 }
 
-
-
-
-
-
-/* Function to insert a given node in the "sorted" linked list. Where
- * the insertion sort actually occurs.
- */ 
-void insertIntoSorted(t_stack** sorted_ref,t_stack* new_node){
-    t_stack* current; 
-    /* Special case for the head end of the "sorted" */
-    if ((*sorted_ref == NULL) || ((*sorted_ref)->val >= new_node->val)) 
-    { 
-        new_node->next = *sorted_ref; 
-        *sorted_ref = new_node; 
-    }
-    /* Locate the node before the point of insertion */
-    else
-    {
-        current = *sorted_ref; 
-        while ((current->next!=NULL) && (current->next->val < new_node->val)){ 
-            current = current->next; 
-        } 
-        new_node->next = current->next; 
-        current->next = new_node; 
-    } 
-}
-
-/* Function to sort a singly linked list using insertion sort */
-void insertionSort(t_stack** head_ref){
-
-    /* Initialize the sorted linked list */
-    t_stack* sorted;
-    sorted=NULL;
-
-    /* Traverse the given linked list and insert every node to "sorted" */
-    t_stack* current;
-    current=*head_ref;
-    while(current!=NULL){
-        /* Store "next" for next iteration */ 
-        t_stack* next;
-        next=current->next;
-
-        /*Insert "current" into the "sorted" linked list */
-        insertIntoSorted(&sorted, current);
-
-        /* Update "current" to the next node */
-        current=next;
-    }
-    *head_ref=sorted;
-}
-
 void	sort_2(t_stack **head)
 {
 	swap_a(head);
@@ -238,7 +186,6 @@ int		get_max(t_stack **head)
 	return (tmp_max);
 }
 
-
 int	get_idx_for_val(t_stack **head, int value)
 {
 	int		i;
@@ -258,11 +205,8 @@ int	get_idx_for_val(t_stack **head, int value)
 
 void	sort_4(t_stack **stack_a)
 {
-	int	i;
-
-	i = get_idx_for_val(stack_a, get_min(stack_a));
-	printf("-->%d\n", i);
-
+	(void)stack_a;
+	printf("Hey\n");
 }
 
 int	main(int argc, char **argv)
@@ -279,59 +223,38 @@ int	main(int argc, char **argv)
 		msg_exit("Error. Input is already ordered", 1);
 	if (ps_hasduplicates(&env->stack_a))
 		msg_exit("Error. Input contains duplicates.", 1);
-
 	if (n_nodes(&env->stack_a) == 2)
-	{
-		printf("HEY!\n");
 		sort_2(&env->stack_a);
-	}
+
 	else if (n_nodes(&env->stack_a) == 3)
 		sort_3(&env->stack_a);
-
-	/*
-	if (n_nodes(&env->stack_a) == 5)
-		sort_5(&env->stack_a);
-	*/
 
 	simple_indexer(&env->stack_a);
 	sort_4(&env->stack_a);
 	print_forwards(&env->stack_a);
 
 	//printf("%d", get_idx_for_val(&env->stack_a, 44));
-
-
 	//printf("%d", INT_MAX);
 	return (0);
 }
 
-/*
-void	stack_sort_4(t_stack *stack_a)
-{
-	int		i;
-	t_stack	*stack_b;
 
-	stack_b = stack_initialisation();
-	i = stack_min_pos(stack_a);
-	if (stack_a->head->index > stack_a->head->next->index)
-		stack_swap(stack_a, 'a');
-	if (stack_sort_ok(stack_a) == 1)
-	{
-		if (i <= stack_a->size / 2)
-		{
-			while (stack_a->head->index != stack_a->id_min)
-				stack_rotate(stack_a, 'a');
-		}
-		else
-		{
-			while (stack_a->head->index != stack_a->id_min)
-				stack_reverse_rotate(stack_a, 'a');
-		}
-		stack_push(stack_b, stack_a, 'b');
-		stack_sort_3(stack_a);
-		stack_push(stack_a, stack_b, 'a');
-	}	
-	free(stack_b);
-}
-*/
+
 
 // Plaats de stacks in 1 enkele struct, genaamd env
+
+
+/*
+stack 4:
+push laagste/hoogste weg naar b
+solve dan stack a (3)
+push dan terug
+
+stack 5:
+push 2 laagste/hoogste weg naar b
+solve dan stack a (3)
+push dan terug
+
+stack 6:
+zelfde idee??
+*/

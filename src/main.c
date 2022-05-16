@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/15 12:07:16 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/05/16 11:30:04 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ps_nnodes(t_stack **lst)
 	return (i);
 }
 
-t_stack	*ps_new_element(int index, int val)
+t_stack	*ps_new_element(int index, int value)
 {
 	t_stack	*new_elem;
 
@@ -87,7 +87,7 @@ t_stack	*ps_new_element(int index, int val)
 	if (!(new_elem))
 		return (NULL);
 	new_elem->index = index;
-	new_elem->val = val;
+	new_elem->value = value;
 	new_elem->next = NULL;
 	return (new_elem);
 }
@@ -121,21 +121,21 @@ void	sort_3(t_stack **head)
 	start = (*head);
 	middle = (*head)->next;
 	end = (*head)->next->next;
-	if (middle->val < start->val && start->val < end->val)
+	if (middle->value < start->value && start->value < end->value)
 		swap_a(head);
-	else if (end->val < middle->val && middle->val < start->val)
+	else if (end->value < middle->value && middle->value < start->value)
 	{
 		swap_a(head);
 		rrotate_a(head);
 	}
-	else if (middle->val < end->val && end->val < start->val)
+	else if (middle->value < end->value && end->value < start->value)
 		rotate_a(head);
-	else if (start->val < end->val && end->val < middle->val)
+	else if (start->value < end->value && end->value < middle->value)
 	{
 		swap_a(head);
 		rotate_a(head);
 	}
-	else if (end->val < start->val && start->val < middle->val)
+	else if (end->value < start->value && start->value < middle->value)
 		rrotate_a(head);
 }
 
@@ -160,11 +160,11 @@ int		get_min(t_stack **head)
 	t_stack	*tmp;
 	
 	tmp = *head;
-	tmp_min = tmp->val;
+	tmp_min = tmp->value;
 	while (tmp)
 	{
-		if (tmp_min > tmp->val)
-			tmp_min = tmp->val;
+		if (tmp_min > tmp->value)
+			tmp_min = tmp->value;
 		tmp = tmp->next;
 	}
 	return (tmp_min);
@@ -176,17 +176,17 @@ int		get_max(t_stack **head)
 	t_stack	*tmp;
 	
 	tmp = *head;
-	tmp_max = tmp->val;
+	tmp_max = tmp->value;
 	while (tmp)
 	{
-		if (tmp_max < tmp->val)
-			tmp_max = tmp->val;
+		if (tmp_max < tmp->value)
+			tmp_max = tmp->value;
 		tmp = tmp->next;
 	}
 	return (tmp_max);
 }
 
-int	get_idx_for_val(t_stack **head, int value)
+int	get_idx_for_value(t_stack **head, int value)
 {
 	int		i;
 	t_stack *tmp;
@@ -195,7 +195,7 @@ int	get_idx_for_val(t_stack **head, int value)
 	tmp = *head;
 	while (tmp)
 	{
-		if (tmp->val == value)
+		if (tmp->value == value)
 			return (i);
 		tmp = tmp->next;
 		i++;
@@ -205,9 +205,46 @@ int	get_idx_for_val(t_stack **head, int value)
 
 void	sort_4(t_stack **stack_a)
 {
-	(void)stack_a;
-	printf("Hey\n");
+	int tmp;
+	tmp = get_idx_for_value(stack_a, get_min(stack_a));
+	printf("%d", tmp);
+	//(void)stack_a;
+	//printf("Hey\n");
 }
+
+/*
+void	stack_index(t_stack *head)
+{
+	const int	stacklen = n_nodes(&head);
+	t_stack	*tmp;
+	t_stack	*smallest;
+	int			i;
+
+	i = 0;
+	tmp = head;
+	smallest = NULL;
+	//simple_indexer(&head);
+	while (i < stacklen)
+	{
+		//printf("%d\n", i);
+		//i++;
+		if (tmp->index == -1 && (smallest == NULL || tmp->value < smallest->value))
+			smallest = tmp;
+		if (tmp->next == head)
+		{
+			smallest->index = i;
+			i++;
+			smallest = NULL;
+		}
+		if (tmp->next)
+			tmp = tmp->next;
+		else
+			return;
+	}
+}
+*/
+
+
 
 int	main(int argc, char **argv)
 {
@@ -228,16 +265,31 @@ int	main(int argc, char **argv)
 
 	else if (n_nodes(&env->stack_a) == 3)
 		sort_3(&env->stack_a);
+	else if (n_nodes(&env->stack_a) == 4)
+		sort_4(&env->stack_a);
 
-	simple_indexer(&env->stack_a);
-	sort_4(&env->stack_a);
+
+	//simple_indexer(&env->stack_a);
+
+	//int a;
+	//a = get_idx_for_value(&env->stack_a, get_max(&env->stack_a));
+	//printf("--->%d\n", a);
+
+	//push_b(&env->stack_a, &env->stack_b);
+	//rotate_s(&env->stack_a, &env->stack_b);
+	//printf("stack a\n");
+	//print_forwards(&env->stack_a);
+	//printf("\n");
+	//printf("stack b\n");
+	//print_forwards(&env->stack_b);
+	//stack_index(env->stack_a);
 	print_forwards(&env->stack_a);
-
-	//printf("%d", get_idx_for_val(&env->stack_a, 44));
+	//printf("%d", get_idx_for_value(&env->stack_a, 44));
 	//printf("%d", INT_MAX);
+
+
 	return (0);
 }
-
 
 
 
@@ -257,4 +309,14 @@ push dan terug
 
 stack 6:
 zelfde idee??
+*/
+
+
+
+/*
+4.
+Vind de kleinste
+Kijk in welke helft die index valt.
+Als valt in 1e helft...
+Als valt in 2e helft...
 */

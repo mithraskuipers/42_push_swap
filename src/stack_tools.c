@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 12:47:46 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/06 21:10:47 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/17 11:53:08 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_stack	*create_new_node(int val, int index)
 	t_stack	*node;
 
 	node = malloc(1 * sizeof(t_stack));
-	node->val = val;
+	node->value = val;
 	node->index = index;
 	node->next = NULL;
 	return (node);
@@ -45,7 +45,7 @@ void	add_node_front(t_stack **head, t_stack *new_node)
 t_stack *pop_node_front(t_stack **head)
 {
 	t_stack *first;
-	first = create_new_node((*head)->val, (*head)->index);
+	first = create_new_node((*head)->value, (*head)->index);
 	first->next = NULL;
 	(*head) = (*head)->next;
 	return (first);
@@ -133,7 +133,7 @@ void	print_forwards(t_stack **head)
 	tmp = *head;
 	while (tmp)
 	{
-		printf("node %d: %d [%d]\n", i, (tmp)->val, (tmp)->index);
+		printf("node %d: %d [%d]\n", i, (tmp)->value, (tmp)->index);
 		(tmp) = (tmp)->next;
 		i++;
 	}
@@ -151,12 +151,12 @@ int	ps_isordered(t_stack **head)
 	t_stack	*tmp;
 
 	tmp = *head;
-	previous = tmp->val;
+	previous = tmp->value;
 	while (tmp)
 	{
-		if (tmp->val < previous)
+		if (tmp->value < previous)
 			return (0);
-		previous = tmp->val;
+		previous = tmp->value;
 		tmp = tmp->next;
 	}
 	return (1);
@@ -181,7 +181,7 @@ int	ps_hasduplicates(t_stack **head)
 		match = 0;
 		while (j)
 		{
-			if (i->val == j->val)
+			if (i->value == j->value)
 				match++;
 			if (match == 2)
 				return (1);

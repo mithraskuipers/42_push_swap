@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/16 11:30:04 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/17 12:01:37 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,14 +203,42 @@ int	get_idx_for_value(t_stack **head, int value)
 	return(-1);
 }
 
-void	sort_4(t_stack **stack_a)
+void	sort_5(t_env *env)
 {
+	t_stack	*tmp;
+
+	tmp = env->(*stack_a);
+	printf("%d", tmp->value);
+	
+	//if (tmp->value > tmp->next->value)
+	/*
 	int tmp;
 	tmp = get_idx_for_value(stack_a, get_min(stack_a));
-	printf("%d", tmp);
-	//(void)stack_a;
-	//printf("Hey\n");
+	printf("%d\n", tmp);
+	int len;
+	len = n_nodes(stack_a);
+	if (tmp < (len / 2))
+	{
+		printf("index in lower half\n");
+	}
+	else
+	{
+		printf("index in upper half\n");
+	}
+	*/
 }
+
+/*
+rotate_to_a(vars, 0);
+push_b(vars);
+rotate_to_a(vars, 1);
+push_b(vars);
+solver3(vars);
+push_a(vars);
+push_a(vars);
+
+4 3 1 2 5
+*/
 
 /*
 void	stack_index(t_stack *head)
@@ -265,8 +293,8 @@ int	main(int argc, char **argv)
 
 	else if (n_nodes(&env->stack_a) == 3)
 		sort_3(&env->stack_a);
-	else if (n_nodes(&env->stack_a) == 4)
-		sort_4(&env->stack_a);
+	//else if (n_nodes(&env->stack_a) == 4)
+	//	sort_4(&env->stack_a);
 
 
 	//simple_indexer(&env->stack_a);

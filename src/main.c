@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/17 12:01:37 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/18 11:54:25 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,31 +203,6 @@ int	get_idx_for_value(t_stack **head, int value)
 	return(-1);
 }
 
-void	sort_5(t_env *env)
-{
-	t_stack	*tmp;
-
-	tmp = env->(*stack_a);
-	printf("%d", tmp->value);
-	
-	//if (tmp->value > tmp->next->value)
-	/*
-	int tmp;
-	tmp = get_idx_for_value(stack_a, get_min(stack_a));
-	printf("%d\n", tmp);
-	int len;
-	len = n_nodes(stack_a);
-	if (tmp < (len / 2))
-	{
-		printf("index in lower half\n");
-	}
-	else
-	{
-		printf("index in upper half\n");
-	}
-	*/
-}
-
 /*
 rotate_to_a(vars, 0);
 push_b(vars);
@@ -273,6 +248,119 @@ void	stack_index(t_stack *head)
 */
 
 
+void	sort_4(t_stack **stack_a, t_stack **stack_b)
+{
+	(void)stack_b;
+	int	index;
+
+	index = get_idx_for_value(stack_a, get_min(stack_a));
+	if ((index + 1) == 4)
+		rrotate_a(stack_a);
+	else
+	{
+		while (index)
+		{
+			rotate_a(stack_a);
+			index--;
+		}
+	}
+	push_b(stack_a, stack_b);	
+	sort_3(stack_a);
+	push_a(stack_a, stack_b);
+}
+
+
+
+
+void	sort_5(t_stack **stack_a, t_stack **stack_b, int go)
+{
+	int	index;
+
+	index = get_idx_for_value(stack_a, get_min(stack_a));
+	if ((index + 1) == 5)
+		rrotate_a(stack_a);
+	else
+	{
+		while (index)
+		{
+			rotate_a(stack_a);
+			index--;
+		}
+	}
+	push_b(stack_a, stack_b);
+	if (go == 1)
+	{
+		sort_5(stack_a, stack_b, 0);
+		sort_3(stack_a);
+		push_a(stack_a, stack_b);
+		push_a(stack_a, stack_b);		
+	}
+}
+
+/*
+void	sort_3_rev(t_stack **head)
+{
+	t_stack	*start;
+	t_stack	*middle;
+	t_stack	*end;
+	
+	start = (*head);
+	middle = (*head)->next;
+	end = (*head)->next->next;
+	if (middle->value > start->value && start->value > end->value)
+		swap_a(head);
+	else if (end->value > middle->value && middle->value > start->value)
+	{
+		swap_a(head);
+		rrotate_a(head);
+	}
+	else if (middle->value > end->value && end->value > start->value)
+		rotate_a(head);
+	else if (start->value > end->value && end->value > middle->value)
+	{
+		swap_a(head);
+		rotate_a(head);
+	}
+	else if (end->value > start->value && start->value > middle->value)
+		rrotate_a(head);
+}
+*/
+
+void	sort_6_helper(t_stack **stack_a, t_stack **stack_b)
+{
+	int	index;
+
+	while (n_nodes(stack_a) != 3)
+	{
+		index = get_idx_for_value(stack_a, get_min(stack_a));
+		if (index > (n_nodes(stack_a) / 2))
+		{
+			while (index <= (n_nodes(stack_a) - 1))
+			{
+				rrotate_a(stack_a);
+				index++;
+			}
+		}
+		else
+		{
+			while (index)
+			{
+				rotate_a(stack_a);
+				index--;
+			}
+		}
+		push_b(stack_a, stack_b);
+	}
+}
+
+void	sort_6(t_stack **stack_a, t_stack **stack_b)
+{
+	sort_6_helper(stack_a, stack_b);
+	sort_3(stack_a);
+	push_a(stack_a, stack_b);
+	push_a(stack_a, stack_b);
+	push_a(stack_a, stack_b);
+}
 
 int	main(int argc, char **argv)
 {
@@ -282,42 +370,26 @@ int	main(int argc, char **argv)
 	if (!env)
 		exit(1);
 	parse_input(argv, &env->stack_a);
-	//reset_index(new);
-	//insertionSort(new);
 	if (ps_isordered(&env->stack_a))
 		msg_exit("Error. Input is already ordered", 1);
 	if (ps_hasduplicates(&env->stack_a))
 		msg_exit("Error. Input contains duplicates.", 1);
 	if (n_nodes(&env->stack_a) == 2)
 		sort_2(&env->stack_a);
-
 	else if (n_nodes(&env->stack_a) == 3)
 		sort_3(&env->stack_a);
-	//else if (n_nodes(&env->stack_a) == 4)
-	//	sort_4(&env->stack_a);
-
-
-	//simple_indexer(&env->stack_a);
-
-	//int a;
-	//a = get_idx_for_value(&env->stack_a, get_max(&env->stack_a));
-	//printf("--->%d\n", a);
-
-	//push_b(&env->stack_a, &env->stack_b);
-	//rotate_s(&env->stack_a, &env->stack_b);
-	//printf("stack a\n");
-	//print_forwards(&env->stack_a);
-	//printf("\n");
-	//printf("stack b\n");
-	//print_forwards(&env->stack_b);
-	//stack_index(env->stack_a);
+	else if (n_nodes(&env->stack_a) == 4)
+		sort_4(&env->stack_a, &env->stack_b);
+	else if (n_nodes(&env->stack_a) == 5)
+		sort_5(&env->stack_a, &env->stack_b, 1);
+	else if (n_nodes(&env->stack_a) == 6)
+		sort_6(&env->stack_a, &env->stack_b);
 	print_forwards(&env->stack_a);
-	//printf("%d", get_idx_for_value(&env->stack_a, 44));
-	//printf("%d", INT_MAX);
-
-
 	return (0);
 }
+
+
+
 
 
 

@@ -24,17 +24,10 @@ typedef struct	s_env
 	t_stack		*stack_b;
 }				t_env;
 
-t_stack	*create_new_node(int value, int index);
 t_stack *pop_node_front(t_stack **head);
-void	insert_node(t_stack **head, t_stack *new_node, int pos);
-t_stack	*pop_node_back(t_stack **head);
-int		n_nodes(t_stack **head);
-void	remove_node(t_stack **head, int pos);
-void	print_forwards(t_stack **head);
 void	parse_input(char **argv, t_stack **head);
 t_stack	*ps_new_element(int index, int value);
 void	ps_addlast(t_stack **head, t_stack *new);
-
 void	rotate_a(t_stack **head);
 void	rotate_b(t_stack **head);
 void	rotate_s(t_stack **head1, t_stack **head2);
@@ -46,14 +39,21 @@ void	rrotate_b(t_stack **head);
 void	rrotate_s(t_stack **head1, t_stack **head2);
 void	push_a(t_stack **head1, t_stack **head2);
 void	push_b(t_stack **head1, t_stack **head2);
-
+int		get_idx_for_value(t_stack **head, int value);
+//int		get_max_value(t_stack **head);
+int		get_min_value(t_stack **head);
+void	simple_indexer(t_stack **head);
+t_stack	*create_new_node(int val, int index);
 void	add_node_back(t_stack **head, t_stack *new_node);
 void	add_node_front(t_stack **head, t_stack *new_node);
-
-int		ps_isordered(t_stack **stack);
+void	insert_node(t_stack **head, t_stack *new_node, int pos);
+t_stack	*pop_node_back(t_stack **head);
+int		n_nodes(t_stack **head);
+void	remove_node(t_stack **head, int pos);
+void	print_forwards(t_stack **head);
+int		ps_isordered(t_stack **head);
 int		ps_hasduplicates(t_stack **head);
+void	ps_isvalid(char *s);
 void	msg_exit(char *s, int exit_code);
 
-
 #endif
-

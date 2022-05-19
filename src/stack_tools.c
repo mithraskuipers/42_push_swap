@@ -6,11 +6,101 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 12:47:46 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/17 11:53:08 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/19 11:18:52 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	remove_first_node(t_stack **head)
+{
+	t_stack	*new_head;
+
+	new_head = (*head)->next;
+	(*head) = new_head;
+}
+
+t_stack	*ret_last_node(t_stack **head)
+{
+	t_stack	*last_node;
+	last_node = (*head);
+
+	while (last_node)
+		(last_node) = last_node->next;
+	return (last_node);
+}
+
+void	lststack_add_back(t_stack **head, t_stack *new)
+{
+	while((*head)->next)
+		(*head) = (*head)->next;
+	(*head)->next = new;
+}
+
+t_stack	*ps_getlast_node(t_stack *lst)
+{
+	while (lst)
+	{
+		if (!(lst->next))
+			return (lst);
+		lst = lst->next;
+	}
+	return (NULL);
+}
+
+void	ps_addlast(t_stack **head, t_stack *new)
+{
+	t_stack	*final_element;
+
+	if (!(*head))
+	{
+		*head = new;
+		return ;
+	}
+	final_element = ps_getlast_node(*head);
+	final_element->next = new;
+}
+
+int	ps_nnodes(t_stack **lst)
+{
+	int	i;
+
+	i = 0;
+	while (*lst)
+	{
+		*lst = (*lst)->next;
+		i++;
+	}
+	return (i);
+}
+
+t_stack	*ps_new_element(int index, int value)
+{
+	t_stack	*new_elem;
+
+	new_elem = malloc(sizeof(t_stack));
+	if (!(new_elem))
+		return (NULL);
+	new_elem->index = index;
+	new_elem->value = value;
+	new_elem->next = NULL;
+	return (new_elem);
+}
+
+void	reset_index(t_stack **head)
+{
+	t_stack	*tmp;
+	int	i;
+
+	tmp = *head;
+	i = 0;
+	while (tmp)
+	{
+		tmp->index = i;
+		i++;
+		tmp = tmp->next;
+	}
+}
 
 t_stack	*create_new_node(int val, int index)
 {
@@ -226,4 +316,68 @@ void	msg_exit(char *s, int exit_code)
 	ft_putstr_fd(s, 2);
 	ft_putstr_fd("\n", 2);
 	exit(exit_code);
+}
+
+void	simple_indexer(t_stack **head)
+{
+	int		i;
+	t_stack	*tmp;
+
+	i = 0;
+	tmp = *head;
+	while (tmp)
+	{
+		tmp->index = i;
+		i++;
+		tmp = tmp->next;
+	}
+}
+
+int		get_min_value(t_stack **head)
+{
+	int		tmp_min;
+	t_stack	*tmp;
+	
+	tmp = *head;
+	tmp_min = tmp->value;
+	while (tmp)
+	{
+		if (tmp_min > tmp->value)
+			tmp_min = tmp->value;
+		tmp = tmp->next;
+	}
+	return (tmp_min);
+}
+
+int		get_max_value(t_stack **head)
+{
+	int		tmp_max;
+	t_stack	*tmp;
+	
+	tmp = *head;
+	tmp_max = tmp->value;
+	while (tmp)
+	{
+		if (tmp_max < tmp->value)
+			tmp_max = tmp->value;
+		tmp = tmp->next;
+	}
+	return (tmp_max);
+}
+
+int	get_idx_for_value(t_stack **head, int value)
+{
+	int		i;
+	t_stack *tmp;
+	
+	i = 0;
+	tmp = *head;
+	while (tmp)
+	{
+		if (tmp->value == value)
+			return (i);
+		tmp = tmp->next;
+		i++;
+	}
+	return(-1);
 }

@@ -132,49 +132,44 @@ void	sort_6(t_stack **stack_a, t_stack **stack_b)
 	push_a(stack_a, stack_b);
 }
 
-
-
-
-
-
-
-
-static t_stack	*get_next_min(t_stack **stack)
+/*
+t_stack	*get_next_min(t_stack **head)
 {
 	int		i;
 	int		has_min;
 	t_stack	*min;
-	t_stack	*current;
+	t_stack	*tmp;
 
 	min = NULL;
-	if (*stack)
+	if (*head)
 	{
 		i = 0;
 		has_min = 0;
-		current = *stack;
-		while (i < n_nodes(stack))
+		tmp = *head;
+		while (i < n_nodes(head))
 		{
-			if ((current->index == -1) && (!has_min || current->value < min->value))
+			if ((tmp->index == -1) && ((has_min == 0) || (tmp->value < min->value)))
 			{
 				has_min = 1;
-				min = current;
+				min = tmp;
 			}
 			i++;
-			current = current->next;
+			tmp = tmp->next;
 		}
 	}
 	return (min);
 }
 
-void				index_stack(t_stack **stack)
+void	index_stack(t_stack **head)
 {
 	size_t	index;
-	t_stack	*current;
+	t_stack	*tmp;
 
 	index = 0;
-	while ((current = get_next_min(stack)))
-		current->index = index++;
+	while ((tmp = get_next_min(head)))
+		tmp->index = index++;
 }
+*/
 
 
 
@@ -206,7 +201,7 @@ int	main(int argc, char **argv)
 	else if (n_nodes(&env->stack_a) == 6)
 		sort_6(&env->stack_a, &env->stack_b);
 
-	//index_stack(&env->stack_a);
+	index_stack(&env->stack_a);
 	print_forwards(&env->stack_a);
 	//system("leaks push_swap");
 	return (0);

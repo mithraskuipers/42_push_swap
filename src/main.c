@@ -134,23 +134,23 @@ void	sort_6(t_stack **stack_a, t_stack **stack_b)
 
 t_stack	*get_next_unindex_min(t_stack **head)
 {
-	t_stack	*tmp_min;
-	int		min;
-	t_stack	*tmp;
+	int		min_value;
+	t_stack	*tmp_node;
+	t_stack	*minimum_node;
 	
-	tmp = *head;
-	tmp_min = tmp;
-	min = tmp_min->value;
-	while (tmp)
+	tmp_node = *head;
+	minimum_node = tmp_node;
+	min_value = INTMAX;
+	while (tmp_node)
 	{
-		if ((min > tmp->value) && (tmp->index == -1))
+		if ((min_value > tmp_node->value) && (tmp_node->index == -1))
 		{
-			min = tmp->value;
-			tmp_min = tmp;
+			min_value = tmp_node->value;
+			minimum_node = tmp_node;
 		}
-		tmp = tmp->next;
+		tmp_node = tmp_node->next;
 	}
-	return (tmp_min);
+	return (minimum_node);
 }
 
 /*
@@ -197,6 +197,7 @@ int	main(int argc, char **argv)
 		sort_6(&env->stack_a, &env->stack_b);
 
 	//indexer(&env->stack_a);
+
 	/*
 	get_next_unindex_min(&env->stack_a)->index = 0;
 	get_next_unindex_min(&env->stack_a)->index = 1;
@@ -209,12 +210,14 @@ int	main(int argc, char **argv)
 	get_next_unindex_min(&env->stack_a)->index = 8;
 	*/
 
-	int a = 1;
+	
+	int a = 0;
 	while (a < n_nodes(&env->stack_a))
 	{
-		a++;
 		get_next_unindex_min(&env->stack_a)->index = a;
+		a++;
 	}
+
 
 
 	print_forwards(&env->stack_a);

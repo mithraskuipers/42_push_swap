@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/19 14:51:45 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/23 14:28:08 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,50 +132,46 @@ void	sort_6(t_stack **stack_a, t_stack **stack_b)
 	push_a(stack_a, stack_b);
 }
 
-/*
-t_stack	*get_next_min(t_stack **head)
+t_stack	*get_next_unindex_min(t_stack **head)
 {
-	int		i;
-	int		has_min;
-	t_stack	*min;
+	t_stack	*tmp_min;
+	int		min;
 	t_stack	*tmp;
-
-	min = NULL;
-	if (*head)
+	
+	tmp = *head;
+	tmp_min = tmp;
+	min = tmp_min->value;
+	while (tmp)
 	{
-		i = 0;
-		has_min = 0;
-		tmp = *head;
-		while (i < n_nodes(head))
+		if ((min > tmp->value) && (tmp->index == -1))
 		{
-			if ((tmp->index == -1) && ((has_min == 0) || (tmp->value < min->value)))
-			{
-				has_min = 1;
-				min = tmp;
-			}
-			i++;
-			tmp = tmp->next;
+			min = tmp->value;
+			tmp_min = tmp;
 		}
+		tmp = tmp->next;
 	}
-	return (min);
+	return (tmp_min);
 }
 
-void	index_stack(t_stack **head)
+/*
+void	indexer(t_stack **head)
 {
-	size_t	index;
-	t_stack	*tmp;
+	int		index;
 
 	index = 0;
-	while ((tmp = get_next_min(head)))
-		tmp->index = index++;
+
+	t_stack	*tmp;
+	tmp = *head;
+	//printf("%d\n", n_nodes(head));
+	while (index < n_nodes(head))
+	{
+		get_next_unindex_min(head)->index = index;
+		head = &(*head)->next;
+		printf("Current value index: %d\n", index);
+		index++;
+	}
 }
 */
-
-
-
-
-
-
 
 int	main(int argc, char **argv)
 {
@@ -189,7 +185,6 @@ int	main(int argc, char **argv)
 		msg_exit("Error. Input is already ordered", 1);
 	if (ps_hasduplicates(&env->stack_a))
 		msg_exit("Error. Input contains duplicates.", 1);
-
 	if (n_nodes(&env->stack_a) == 2)
 		sort_2(&env->stack_a);
 	else if (n_nodes(&env->stack_a) == 3)
@@ -201,7 +196,8 @@ int	main(int argc, char **argv)
 	else if (n_nodes(&env->stack_a) == 6)
 		sort_6(&env->stack_a, &env->stack_b);
 
-	index_stack(&env->stack_a);
+	//indexer(&env->stack_a);
+
 	print_forwards(&env->stack_a);
 	//system("leaks push_swap");
 	return (0);

@@ -197,6 +197,25 @@ int	main(int argc, char **argv)
 		sort_6(&env->stack_a, &env->stack_b);
 
 	//indexer(&env->stack_a);
+	/*
+	get_next_unindex_min(&env->stack_a)->index = 0;
+	get_next_unindex_min(&env->stack_a)->index = 1;
+	get_next_unindex_min(&env->stack_a)->index = 2;
+	get_next_unindex_min(&env->stack_a)->index = 3;
+	get_next_unindex_min(&env->stack_a)->index = 4;
+	get_next_unindex_min(&env->stack_a)->index = 5;
+	get_next_unindex_min(&env->stack_a)->index = 6;
+	get_next_unindex_min(&env->stack_a)->index = 7;
+	get_next_unindex_min(&env->stack_a)->index = 8;
+	*/
+
+	int a = 1;
+	while (a < n_nodes(&env->stack_a))
+	{
+		a++;
+		get_next_unindex_min(&env->stack_a)->index = a;
+	}
+
 
 	print_forwards(&env->stack_a);
 	//system("leaks push_swap");

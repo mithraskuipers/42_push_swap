@@ -40,7 +40,6 @@ void	rrotate_s(t_stack **head1, t_stack **head2);
 void	push_a(t_stack **head1, t_stack **head2);
 void	push_b(t_stack **head1, t_stack **head2);
 int		get_idx_for_value(t_stack **head, int value);
-//int		get_max_value(t_stack **head);
 int		get_min_value(t_stack **head);
 void	simple_indexer(t_stack **head);
 t_stack	*create_new_node(int val, int index);
@@ -55,5 +54,6 @@ int		ps_isordered(t_stack **head);
 int		ps_hasduplicates(t_stack **head);
 void	ps_isvalid(char *s);
 void	msg_exit(char *s, int exit_code);
+void	indexer(t_stack **head);
 
 #endif

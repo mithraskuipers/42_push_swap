@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/23 14:28:08 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/24 14:08:42 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,25 +153,71 @@ t_stack	*get_next_unindex_min(t_stack **head)
 	return (minimum_node);
 }
 
-/*
+
 void	indexer(t_stack **head)
 {
-	int		index;
-
-	index = 0;
-
-	t_stack	*tmp;
-	tmp = *head;
-	//printf("%d\n", n_nodes(head));
-	while (index < n_nodes(head))
+	int a = 0;
+	while (a < n_nodes(head))
 	{
-		get_next_unindex_min(head)->index = index;
-		head = &(*head)->next;
-		printf("Current value index: %d\n", index);
-		index++;
+		get_next_unindex_min(head)->index = a;
+		a++;
 	}
 }
-*/
+
+
+
+static int	get_max_bits(t_stack **head)
+{
+	int		max;
+	int		max_bits;
+	t_stack	*tmp;
+
+	tmp = *head;
+	max = 0;
+	max_bits = 0;
+	while (tmp)
+	{
+		if (tmp->value > max)
+			max = tmp->value;
+		tmp = tmp->next;
+	}
+	while ((max >> max_bits) > 0)
+		max_bits++;
+	return (max_bits);
+}
+
+void	radix_sort(t_stack **head1, t_stack **head2)
+{
+	int		i;
+	int		j;
+	int		size;
+	int		max_bits;
+	t_stack	*head_a;
+
+	i = 0;
+	size = n_nodes(head1);
+	max_bits = get_max_bits(head1);
+	while (i < max_bits)
+	{
+		j = 0;
+		while (j < size)
+		{
+			head_a = *head1;
+			if (((head_a->index >> i) & 1) == 1)
+				rotate_a(head1);
+			else
+				push_b(head1, head2);
+			j++;
+		}
+		while (n_nodes(head2) != 0)
+			push_a(head1, head2);
+		i++;
+	}
+}
+
+
+
+
 
 int	main(int argc, char **argv)
 {
@@ -196,31 +242,10 @@ int	main(int argc, char **argv)
 	else if (n_nodes(&env->stack_a) == 6)
 		sort_6(&env->stack_a, &env->stack_b);
 
-	//indexer(&env->stack_a);
-
-	/*
-	get_next_unindex_min(&env->stack_a)->index = 0;
-	get_next_unindex_min(&env->stack_a)->index = 1;
-	get_next_unindex_min(&env->stack_a)->index = 2;
-	get_next_unindex_min(&env->stack_a)->index = 3;
-	get_next_unindex_min(&env->stack_a)->index = 4;
-	get_next_unindex_min(&env->stack_a)->index = 5;
-	get_next_unindex_min(&env->stack_a)->index = 6;
-	get_next_unindex_min(&env->stack_a)->index = 7;
-	get_next_unindex_min(&env->stack_a)->index = 8;
-	*/
-
-	
-	int a = 0;
-	while (a < n_nodes(&env->stack_a))
-	{
-		get_next_unindex_min(&env->stack_a)->index = a;
-		a++;
-	}
-
-
-
+	indexer(&env->stack_a);
+	radix_sort(&env->stack_a, &env->stack_b);
 	print_forwards(&env->stack_a);
+
 	//system("leaks push_swap");
 	return (0);
 }

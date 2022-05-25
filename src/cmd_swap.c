@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 17:56:37 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/10 19:05:54 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/25 14:50:28 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,24 @@ void	swap_a(t_stack **head)
 {
 	t_stack *tmp;
 	
-	tmp = pop_node_front(head);
-	insert_node(head, tmp, 1);
-	write(1, "sa\n", 3);
+	if (n_nodes(head) > 0)
+	{
+		tmp = pop_node_front(head);
+		insert_node(head, tmp, 1);
+		write(1, "sa\n", 3);
+	}
 }
 
 void	swap_b(t_stack **head)
 {
 	t_stack *tmp;
 	
-	tmp = pop_node_front(head);
-	insert_node(head, tmp, 1);
-	write(1, "sb\n", 3);
+	if (n_nodes(head) > 0)
+	{
+		tmp = pop_node_front(head);
+		insert_node(head, tmp, 1);
+		write(1, "sb\n", 3);
+	}
 }
 
 void	swap_s(t_stack **head1, t_stack **head2)

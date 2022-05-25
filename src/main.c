@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/24 14:08:42 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/25 14:51:30 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,88 +164,101 @@ void	indexer(t_stack **head)
 	}
 }
 
+/*
+count_bits() calls get_max_value() to find the largest value
+in the linked list, and then uses bitwise shifting using the
+right shift operator to count the number of bits required
+to express that value in binary.
+*/
 
-
-static int	get_max_bits(t_stack **head)
+int	count_bits(t_stack **head)
 {
-	int		max;
 	int		max_bits;
+	int		largest_val;
 	t_stack	*tmp;
 
-	tmp = *head;
-	max = 0;
 	max_bits = 0;
-	while (tmp)
-	{
-		if (tmp->value > max)
-			max = tmp->value;
-		tmp = tmp->next;
-	}
-	while ((max >> max_bits) > 0)
+	largest_val = get_max_value(head);
+	tmp = *head;
+	while ((largest_val >> max_bits) > 0)
 		max_bits++;
 	return (max_bits);
 }
 
-void	radix_sort(t_stack **head1, t_stack **head2)
+/*
+
+*/
+
+void	radix(t_env *env)
 {
 	int		i;
 	int		j;
-	int		size;
-	int		max_bits;
 	t_stack	*head_a;
 
 	i = 0;
-	size = n_nodes(head1);
-	max_bits = get_max_bits(head1);
-	while (i < max_bits)
+	while (i < count_bits(&env->stack_a))
 	{
 		j = 0;
-		while (j < size)
+		while (j < n_nodes(&env->stack_a))
 		{
-			head_a = *head1;
+			head_a = *&env->stack_a;
 			if (((head_a->index >> i) & 1) == 1)
-				rotate_a(head1);
+				rotate_a(&env->stack_a);
 			else
-				push_b(head1, head2);
+				push_b(&env->stack_a, &env->stack_b);
 			j++;
 		}
-		while (n_nodes(head2) != 0)
-			push_a(head1, head2);
+		while (n_nodes(&env->stack_b) != 0)
+			push_a(&env->stack_a, &env->stack_b);
 		i++;
 	}
 }
 
+void	sort_stack(t_env *env)
+{
+	int	stack_len;
 
+	stack_len = n_nodes(&env->stack_a);
+	if (stack_len > 6)
+	{
+		indexer(&env->stack_a);
+		radix(env);
+	}
+	else if ((stack_len) == 2)
+		sort_2(&env->stack_a);
+	else if ((stack_len) == 3)
+		sort_3(&env->stack_a);
+	else if ((stack_len) == 4)
+		sort_4(&env->stack_a, &env->stack_b);
+	else if ((stack_len) == 5)
+		sort_5(&env->stack_a, &env->stack_b);
+	else if ((stack_len) == 6)
+		sort_6(&env->stack_a, &env->stack_b);
+}
 
-
+void	check_input(t_env *env)
+{
+	if (ps_hasduplicates(&env->stack_a))
+		msg_exit("Error. Input contains duplicates.", 1);
+	if (ps_isordered(&env->stack_a))
+		msg_exit("Error. Input is already ordered", 1);
+}
 
 int	main(int argc, char **argv)
 {
 	t_env	*env;
-	(void)argc;
 	env = ft_calloc(1, sizeof(t_env));
-	if (!env || argc < 2)
-		exit(1);
-	parse_input(argv, &env->stack_a);
-	if (ps_isordered(&env->stack_a))
-		msg_exit("Error. Input is already ordered", 1);
-	if (ps_hasduplicates(&env->stack_a))
-		msg_exit("Error. Input contains duplicates.", 1);
-	if (n_nodes(&env->stack_a) == 2)
-		sort_2(&env->stack_a);
-	else if (n_nodes(&env->stack_a) == 3)
-		sort_3(&env->stack_a);
-	else if (n_nodes(&env->stack_a) == 4)
-		sort_4(&env->stack_a, &env->stack_b);
-	else if (n_nodes(&env->stack_a) == 5)
-		sort_5(&env->stack_a, &env->stack_b);
-	else if (n_nodes(&env->stack_a) == 6)
-		sort_6(&env->stack_a, &env->stack_b);
-
-	indexer(&env->stack_a);
-	radix_sort(&env->stack_a, &env->stack_b);
+	if (!env)
+		msg_exit("Could not allocate memory for environment struct.", 1);
+	else if (argc < 2)
+		msg_exit("Please enter a list of numbers.", 1);
+	parse_input(argv, env);
+	check_input(env);
+	//sort_stack(env);
+	//swap_a(&env->stack_a); // leak!
+	push_b(&env->stack_a, &env->stack_b); // leak!
+	//swap_b(&env->stack_b); // ???
 	print_forwards(&env->stack_a);
-
-	//system("leaks push_swap");
+	system("leaks push_swap");
 	return (0);
 }

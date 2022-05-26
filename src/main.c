@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/26 18:47:23 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/26 20:52:11 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ in the linked list, and then uses bitwise shifting using the
 right shift operator to count the number of bits required
 to express that value in binary.
 */
+
 
 int	count_bits(t_stack **head)
 {
@@ -31,9 +32,11 @@ int	count_bits(t_stack **head)
 	return (max_bits);
 }
 
+
 /*
 
 */
+
 
 void	radix(t_env *env)
 {
@@ -61,6 +64,7 @@ void	radix(t_env *env)
 		i++;
 	}
 }
+
 
 void	sort_stack(t_env *env)
 {
@@ -107,7 +111,7 @@ int	main(int argc, char **argv)
 	//swap_a(&env->stack_a); // leak!
 	//push_b(&env->stack_a, &env->stack_b); // leak!
 	//swap_b(&env->stack_b); // ???
-	//print_forwards(&env->stack_a);
+	print_forwards(&env->stack_a);
 	//system("leaks push_swap");
 	//free (env);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 15:27:24 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/26 17:42:21 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/26 21:44:19 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	parse_input(char **argv, t_env *env)
 	{
 		splitted_args = ft_split(argv[i], ' ');
 		if (splitted_args == NULL)
-			exit(1);
+			exit(2);
 		j = 0;
 		while (splitted_args[j])
 		{
 			if ((mk_atoi(splitted_args[j], &val) == -1) || \
 			(mk_str_only_nbrs(splitted_args[j]) == 0))
-				msg_exit("Error", 1);
+				msg_exit("Error", 2);
 			ps_addlast(&env->stack_a, ps_new_element(-1, val));
 			j++;
 		}

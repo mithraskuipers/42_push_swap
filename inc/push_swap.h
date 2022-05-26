@@ -58,4 +58,13 @@ void	msg_exit(char *s, int exit_code);
 void	indexer(t_stack **head);
 void	check_input(t_env *env);
 void	sort_stack(t_env *env);
+
+void	sort_2(t_stack **head);
+void	sort_3(t_stack **head);
+void	sort_4(t_stack **stack_a, t_stack **stack_b);
+void	sort_5(t_stack **stack_a, t_stack **stack_b);
+void	sort_6(t_stack **stack_a, t_stack **stack_b);
+
+
+
 #endif

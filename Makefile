@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/15 21:13:40 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/05/25 13:11:52 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/05/26 18:56:19 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,13 @@ SRCS		=	$(SRC_DIR)main.c \
 				$(SRC_DIR)cmd_rotate.c \
 				$(SRC_DIR)cmd_rrotate.c \
 				$(SRC_DIR)cmd_swap.c \
-				$(SRC_DIR)cmd_push.c
+				$(SRC_DIR)cmd_push.c \
+				$(SRC_DIR)sort_2.c \
+				$(SRC_DIR)sort_3.c \
+				$(SRC_DIR)sort_4.c \
+				$(SRC_DIR)sort_5.c \
+				$(SRC_DIR)sort_6.c \
+				$(SRC_DIR)index_stack.c
 
 OBJS		= $(SRCS:.c=.o)
 

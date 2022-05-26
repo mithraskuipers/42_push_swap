@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 16:00:03 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/16 07:51:27 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/26 18:02:45 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ void	rotate_s(t_stack **head1, t_stack **head2)
 		add_node_back(head1, tmp);
 		tmp = pop_node_front(head2);
 		add_node_back(head2, tmp);
-		write(1, "rs\n", 3);
+		write(1, "rr\n", 3);
 	}
 }

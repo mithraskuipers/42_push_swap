@@ -3,6 +3,8 @@
 
 # define INTMIN -2147483648
 # define INTMAX 2147483647
+# define TRUE 1
+# define FALSE 0
 
 #include <limits.h>
 #include <unistd.h>
@@ -28,17 +30,17 @@ t_stack *pop_node_front(t_stack **head);
 void	parse_input(char **argv, t_env *env);
 t_stack	*ps_new_element(int index, int value);
 void	ps_addlast(t_stack **head, t_stack *new);
-void	rotate_a(t_stack **head);
-void	rotate_b(t_stack **head);
-void	rotate_s(t_stack **head1, t_stack **head2);
-void	swap_a(t_stack **head);
-void	swap_b(t_stack **head);
-void	swap_s(t_stack **head1, t_stack **head2);
-void	rrotate_a(t_stack **head);
-void	rrotate_b(t_stack **head);
-void	rrotate_s(t_stack **head1, t_stack **head2);
-void	push_a(t_stack **head1, t_stack **head2);
-void	push_b(t_stack **head1, t_stack **head2);
+void	rotate_a(t_env *env);
+void	rotate_b(t_env *env);
+void	rotate_s(t_env *env);
+void	swap_a(t_env *env);
+void	swap_b(t_env *env);
+void	swap_s(t_env *env);
+void	rrotate_a(t_env *env);
+void	rrotate_b(t_env *env);
+void	rrotate_s(t_env *env);
+void	push_a(t_env *env);
+void	push_b(t_env *env);
 int		get_idx_for_value(t_stack **head, int value);
 int		get_min_value(t_stack **head);
 int		get_max_value(t_stack **head);
@@ -59,13 +61,14 @@ void	indexer(t_stack **head);
 void	check_input(t_env *env);
 void	sort_stack(t_env *env);
 
-void	sort_2(t_stack **head);
-void	sort_3(t_stack **head);
-void	sort_4(t_stack **stack_a, t_stack **stack_b);
-void	sort_5(t_stack **stack_a, t_stack **stack_b);
-void	sort_6(t_stack **stack_a, t_stack **stack_b);
+void	sort_2(t_env *env);
+void	sort_3(t_env *env);
+void	sort_4(t_env *env);
+void	sort_5(t_env *env);
+void	sort_6(t_env *env);
 void	sort_big(t_env *env, int bucket_size);
 
-
+void	put_node_upfront(t_env *env, int max_val, int bucket_size);
+void	put_node_upfront_b(t_env *env, int min_val);
 
 #endif

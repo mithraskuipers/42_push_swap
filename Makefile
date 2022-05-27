@@ -6,15 +6,15 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/15 21:13:40 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/05/27 10:43:26 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/05/27 20:27:39 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= push_swap
 CC			= gcc
-#CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror
 #CFLAGS		= -g3 -fsanitize=address
-CFLAGS		= -g
+#CFLAGS		= -g
 
 INCS	=	-I./inc
 
@@ -32,7 +32,9 @@ SRCS		=	$(SRC_DIR)main.c \
 				$(SRC_DIR)sort_4.c \
 				$(SRC_DIR)sort_5.c \
 				$(SRC_DIR)sort_6.c \
-				$(SRC_DIR)index_stack.c
+				$(SRC_DIR)sort_big.c \
+				$(SRC_DIR)sort_stack.c \
+				$(SRC_DIR)check_input.c
 
 OBJS		= $(SRCS:.c=.o)
 

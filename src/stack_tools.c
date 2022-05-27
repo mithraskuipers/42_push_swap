@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 12:47:46 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/19 11:18:52 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/26 21:44:24 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,9 +299,9 @@ void	ps_isvalid(char *s)
 	while (s[i])
 	{
 		if (!ft_isdigit(s[i]) && s[i] != ' ' && s[i] != '-' && s[i] != '+')
-			msg_exit("Error", 1);
+			msg_exit("Error", 2);
 		if (s[i] == '-' && !ft_isdigit(s[i+1]))
-			msg_exit("Error", 1);
+			msg_exit("Error", 2);
 		i++;
 	}
 }

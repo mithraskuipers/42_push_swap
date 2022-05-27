@@ -9,9 +9,9 @@
 			"type": "lldb",
 			"request": "launch",
 			"name": "Debug",
-			"program": "${workspaceFolder}/push_swap",
-			"args": ["22 50 11"],
-			"cwd": "${workspaceFolder}"
+			"program": "/home/mkuipers/repos/push_swap/push_swap",
+			"args": ["34 66 42 23 10 15 44 50 4 92 51 30 49 12 28 99 86"],
+			"cwd": "/home/mkuipers/repos/push_swap"
 		}
 	]
 }

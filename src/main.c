@@ -6,13 +6,14 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/27 10:13:08 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/27 11:09:19 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 
+void	superbob(t_env *env, int nbr);
 
 void	sort_stack(t_env *env)
 {
@@ -29,11 +30,8 @@ void	sort_stack(t_env *env)
 		sort_5(&env->stack_a, &env->stack_b);
 	else if ((stack_len) == 6)
 		sort_6(&env->stack_a, &env->stack_b);
-	//else
-	//{
-	//	indexer(&env->stack_a);
-	//	radix(env);
-	//}
+	else
+		superbob(env, 19);
 }
 
 void	check_input(t_env *env)
@@ -52,29 +50,50 @@ void	findNum(t_env *env, int num, int buf)
 
 	while (1)
 	{
-		atoi = ft_atoi(env->stack_a->content);
+		atoi = env->stack_a->value;
 		if (num == INTMIN)
 			return ;
 		if ((num - buf) <= atoi && (num + buf) >= atoi)
 			return ;
-		x = get_idx_for_value(&env->stack_a, num)
-		//x = getIndex(v->a, num);
-		//y = ft_node_size(v->a) / 2;
+		x = get_idx_for_value(&env->stack_a, num);
 		y = n_nodes(&env->stack_a) / 2;
 		if (x < y)
 		{
 			rotate_a(&env->stack_a);
-			//caller(v, RA);
 		}
 		else
 		{
 			rrotate_a(&env->stack_a);
-			//caller(v, RRA);
 		}
 	}
 }
 
-void	bob(t_env *env, int nbr)
+void	findNumB(t_env *env, int num)
+{
+	int	x;
+	int	y;
+	int	atoi;
+
+	while (1)
+	{
+		atoi = env->stack_b->value;
+		if (atoi == num)
+			return ;
+		x = get_idx_for_value(&env->stack_b, num);
+		if (env->stack_b->next && env->stack_b->next->value == num)
+			swap_b(&env->stack_b);
+		else
+		{
+			y = n_nodes(&env->stack_b) / 2;
+			if (x < y)
+				rotate_b(&env->stack_b);
+			else
+				rrotate_b(&env->stack_b);
+		}
+	}
+}
+
+void	superbob(t_env *env, int nbr)
 {
 	if (ps_isordered(&env->stack_a))
 	{
@@ -82,7 +101,18 @@ void	bob(t_env *env, int nbr)
 	}
 	while (n_nodes(&env->stack_a) > 1)
 	{
-
+		findNum(env, get_min_value(&env->stack_a), nbr);
+		if ((ps_isordered(&env->stack_a)) && (env->stack_a->value > env->stack_b->value))
+		{
+			break;
+		}
+		push_b(&env->stack_a, &env->stack_b);
+	}
+	push_b(&env->stack_a, &env->stack_b);
+	while (n_nodes(&env->stack_b) > 0)
+	{
+		findNumB(env, get_max_value(&env->stack_b));
+		push_a(&env->stack_a, &env->stack_b);
 	}
 }
 

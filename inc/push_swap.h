@@ -64,6 +64,7 @@ void	sort_3(t_stack **head);
 void	sort_4(t_stack **stack_a, t_stack **stack_b);
 void	sort_5(t_stack **stack_a, t_stack **stack_b);
 void	sort_6(t_stack **stack_a, t_stack **stack_b);
+void	sort_big(t_env *env, int bucket_size);
 
 
 

@@ -6,14 +6,15 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/27 11:09:19 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/27 13:15:51 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-void	superbob(t_env *env, int nbr);
+/*
+python3 pyviz.py `ruby -e "puts (0..500).to_a.shuffle.join(' ')"`
+*/
 
 void	sort_stack(t_env *env)
 {
@@ -31,7 +32,7 @@ void	sort_stack(t_env *env)
 	else if ((stack_len) == 6)
 		sort_6(&env->stack_a, &env->stack_b);
 	else
-		superbob(env, 19);
+		sort_big(env, 19);
 }
 
 void	check_input(t_env *env)
@@ -93,7 +94,7 @@ void	findNumB(t_env *env, int num)
 	}
 }
 
-void	superbob(t_env *env, int nbr)
+void	sort_big(t_env *env, int bucket_size)
 {
 	if (ps_isordered(&env->stack_a))
 	{
@@ -101,7 +102,7 @@ void	superbob(t_env *env, int nbr)
 	}
 	while (n_nodes(&env->stack_a) > 1)
 	{
-		findNum(env, get_min_value(&env->stack_a), nbr);
+		findNum(env, get_min_value(&env->stack_a), bucket_size);
 		if ((ps_isordered(&env->stack_a)) && (env->stack_a->value > env->stack_b->value))
 		{
 			break;

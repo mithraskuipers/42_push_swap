@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/27 21:14:21 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/27 21:16:29 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 python3 pyviz.py `ruby -e "puts (0..500).to_a.shuffle.join(' ')"`
 make && ./push_swap 1 -2 3 -4 5 -6 7 -8 9 | wc -l
+make fclean && git add . && git commit -m "norminette in progress" && git push
 */
 
 void	put_node_upfront(t_env *env, int max_val, int bucket_size)

@@ -68,7 +68,7 @@ void	sort_5(t_env *env);
 void	sort_6(t_env *env);
 void	sort_big(t_env *env, int bucket_size);
 
-void	put_node_upfront(t_env *env, int max_val, int bucket_size);
-void	put_node_upfront_b(t_env *env, int min_val);
+void	put_minnode_upfront_a(t_env *env, int bucket_size);
+void	put_maxnode_upfront_b(t_env *env);
 
 #endif

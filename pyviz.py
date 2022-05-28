@@ -38,6 +38,7 @@ class PsGui:
         dirname = os.path.dirname(os.path.abspath(__file__))
         PUSHS_PATH = os.path.join(dirname, RELATIVE_PATH)
         self.pile_a = [int(num) for num in sys.argv[1:]]
+        print(sys.argv[1:])
         self.first_pile = self.pile_a[:]
         self.pile_b = []
         self.cmds = subprocess.check_output([PUSHS_PATH] + sys.argv[1:], stderr=subprocess.STDOUT,

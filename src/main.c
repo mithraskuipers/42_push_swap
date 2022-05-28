@@ -6,63 +6,22 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/27 21:16:29 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/28 15:16:56 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-python3 pyviz.py `ruby -e "puts (0..500).to_a.shuffle.join(' ')"`
+https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
+
+make && python3 pyviz.py 50 17 29 6 28 39 48 47 46 30 38 36 25 37 27 24 31 11 20 26 5 16 22 0 13 1 3 19 33 49 7 15 35 14 2 23 4 41 32 10 9 44 40 42 8 45
+python3 pyviz.py `ruby -e "puts (0..50).to_a.shuffle.join(' ')"`
+50 17 29 6 28 39 48 47 46 30 38 36 25 37 27 24 31 11 20 26 5 16 22 0 13 1 3 19 33 49 7 15 35 14 2 23 4 41 32 10 9 44 34 43 12 18 21 40 42 8 45
+./push_swap 50 17 29 6 28 39 48 47 46 30 38 36 25 37 27 24 31 11 20 26 5 16 22 0 13 1 3 19 33 49 7 15 35 14 2 23 4 41 32 10 9 44 34 43 12 18 21 40 42 8 45 | ./checker_Mac 50 17 29 6 28 39 48 47 46 30 38 36 25 37 27 24 31 11 20 26 5 16 22 0 13 1 3 19 33 49 7 15 35 14 2 23 4 41 32 10 9 44 34 43 12 18 21 40 42 8 45
 make && ./push_swap 1 -2 3 -4 5 -6 7 -8 9 | wc -l
 make fclean && git add . && git commit -m "norminette in progress" && git push
 */
-
-void	put_node_upfront(t_env *env, int max_val, int bucket_size)
-{
-	int	x;
-	int	y;
-
-	while (1)
-	{
-		if (max_val == INTMIN)
-			return ;
-		if ((max_val - bucket_size) <= env->stack_a->value && \
-		(max_val + bucket_size) >= env->stack_a->value)
-			return ;
-		x = get_idx_for_value(&env->stack_a, max_val);
-		y = n_nodes(&env->stack_a) / 2;
-		if (x < y)
-			rotate_a(env);
-		else
-			rrotate_a(env);
-	}
-}
-
-void	put_node_upfront_b(t_env *env, int min_val)
-{
-	int	x;
-	int	y;
-	int	atoi;
-
-	while (TRUE)
-	{
-		atoi = env->stack_b->value;
-		if (atoi == min_val)
-			return ;
-		x = get_idx_for_value(&env->stack_b, min_val);
-		if (env->stack_b->next && env->stack_b->next->value == min_val)
-			swap_b(env);
-		else
-		{
-			y = n_nodes(&env->stack_b) / 2;
-			if (x < y)
-				rotate_b(env);
-			else
-				rrotate_b(env);
-		}
-	}
-}
 
 int	main(int argc, char **argv)
 {

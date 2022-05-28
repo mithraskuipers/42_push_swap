@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/26 17:47:48 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/27 20:42:59 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/28 10:34:56 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,9 @@ void	sort_3(t_env *env)
 	t_stack	*middle;
 	t_stack	*end;
 
-	t_stack	*head;
-
-	head = env->stack_a;
-	
-	start = (head);
-	middle = (head)->next;
-	end = (head)->next->next;
+	start = (env->stack_a);
+	middle = (env->stack_a)->next;
+	end = (env->stack_a)->next->next;
 	if (middle->value < start->value && start->value < end->value)
 		swap_a(env);
 	else if (end->value < middle->value && middle->value < start->value)

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/27 19:44:56 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/28 15:16:46 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/28 20:18:14 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 void	sort_big(t_env *env, int bucket_size)
 {
-	while (n_nodes(&env->stack_a) != 0)
+	if (ps_isordered(&env->stack_a))
+			return;
+	while (n_nodes(&env->stack_a) > 1)
 	{
+
 		put_minnode_upfront_a(env, bucket_size);
 		push_b(env);
 		//if ((ps_isordered(&env->stack_a)) && \ // a is gesorteerd
 		//(env->stack_a->value < env->stack_b->value))
 		//	break;
 		if (ps_isordered(&env->stack_a) && \
-		(env->stack_a->value > get_max_value(&env->stack_b)))
+		(env->stack_a->value < get_max_value(&env->stack_b)))
 			break;
 	}
 	//while (n_nodes(&env->stack_a) != 0)
@@ -44,6 +47,8 @@ void	put_minnode_upfront_a(t_env *env, int bucket_size)
 	min_val = get_min_value(&env->stack_a);
 	while (TRUE)
 	{
+		if (ps_isordered(&env->stack_a))
+			return;
 		//if (INTMIN == min_val)
 		//	return ;
 		if ((min_val - bucket_size) <= env->stack_a->value && \

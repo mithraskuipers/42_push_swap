@@ -6,15 +6,17 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/28 21:16:38 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/29 22:33:24 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
+(cd tester2 && bash tester.sh .. 100 5)
+vals=`python random_nums2.py` && ./push_swap $vals | ./checker_linux $vals
 make && ARG="`ruby -e "puts (0..500).to_a.shuffle.join(' ')"`" && ./push_swap $ARG | wc -l
-vals=`python random_nums2.py` && ./push_swap $vals
+vals=`python random_nums2.py` && ./push_swap $vals | ./checker_linux $vals
 python3 pyviz.py `ruby -e "puts (0..50).to_a.shuffle.join(' ')"`
 make fclean && git add . && git commit -m "norminette in progress" && git push
 */
@@ -31,6 +33,9 @@ int	main(int argc, char **argv)
 	parse_input(argv, env);
 	check_input(env);
 	sort_stack(env);
+	print_forwards(&env->stack_b);
+	//printf("\n");
+	//print_forwards(&env->stack_b);
 	return (0);
 }
 

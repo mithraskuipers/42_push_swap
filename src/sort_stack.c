@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/27 19:15:21 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/28 20:23:15 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/29 22:29:05 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	sort_stack(t_env *env)
 	else if ((stack_len) == 6)
 		sort_6(env);
 	else
-		sort_big(env, 19);
+		sort_radix(env);
 }

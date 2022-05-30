@@ -6,13 +6,14 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/29 22:33:24 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/30 08:29:33 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
+getbinary = lambda x, n: format(x, 'b').zfill(n) ; getbinary(99, 8)
 (cd tester2 && bash tester.sh .. 100 5)
 vals=`python random_nums2.py` && ./push_swap $vals | ./checker_linux $vals
 make && ARG="`ruby -e "puts (0..500).to_a.shuffle.join(' ')"`" && ./push_swap $ARG | wc -l

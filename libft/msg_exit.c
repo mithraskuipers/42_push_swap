@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   sort_4.c                                           :+:    :+:            */
+/*   msg_exit.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/26 17:47:48 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/30 22:58:59 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/05/30 22:47:09 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/05/30 22:47:26 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	sort_4(t_env *env)
+/*
+msg_exit()
+Prints error statement to the standard error, followed by exiting the program.
+*/
+
+void	msg_exit(char *s, int exit_code)
 {
-	int	index;
-
-	index = get_idx_for_val(&env->stack_a, get_min_val(&env->stack_a));
-	if ((index + 1) == 4)
-		rrotate_a(env);
-	else
-	{
-		while (index)
-		{
-			rotate_a(env);
-			index--;
-		}
-	}
-	push_b(env);	
-	sort_3(env);
-	push_a(env);
+	ft_putstr_fd(s, 2);
+	ft_putstr_fd("\n", 2);
+	exit(exit_code);
 }

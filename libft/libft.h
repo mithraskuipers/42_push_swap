@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/22 20:49:59 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/26 17:42:10 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/30 22:33:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ void	dp_clean_char(char **dp);
 void	dp_clean_void(char **dp);
 int		mk_iswhitespace(int c);
 int		mk_atoi(char *s, int *nbr);
-int		mk_str_only_digits(char *s);
-int		mk_str_only_nbrs(char *s);
-
+int		str_only_digits(char *s);
+int		str_only_nbrs(char *s);
+void	msg_exit(char *s, int exit_code);
 
 #endif

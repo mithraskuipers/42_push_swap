@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/26 17:47:48 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/27 20:52:51 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/30 23:01:05 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	sort_6_helper(t_env *env)
 
 	while (n_nodes(&env->stack_a) != 3)
 	{
-		index = get_idx_for_value(&env->stack_a, get_min_value(&env->stack_a));
+		index = get_idx_for_val(&env->stack_a, get_min_val(&env->stack_a));
 		if (index > (n_nodes(&env->stack_a) / 2))
 		{
 			while (index <= (n_nodes(&env->stack_a) - 1))

@@ -6,13 +6,13 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/15 21:13:40 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/05/29 22:30:02 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/05/30 23:19:47 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= push_swap
 CC			= gcc
-# CFLAGS		= -Wall -Wextra -Werror
+#CFLAGS		= -Wall -Wextra -Werror
 #CFLAGS		= -g3 -fsanitize=address
 #CFLAGS		= -g
 
@@ -21,8 +21,10 @@ INCS	=	-I./inc
 SRC_DIR		= ./src/
 
 SRCS		=	$(SRC_DIR)main.c \
-				$(SRC_DIR)stack_tools.c \
 				$(SRC_DIR)parse_input.c \
+				$(SRC_DIR)check_input.c \
+				$(SRC_DIR)sort_stack.c \
+				$(SRC_DIR)stack_tools.c \
 				$(SRC_DIR)cmd_rotate.c \
 				$(SRC_DIR)cmd_rrotate.c \
 				$(SRC_DIR)cmd_swap.c \
@@ -33,8 +35,8 @@ SRCS		=	$(SRC_DIR)main.c \
 				$(SRC_DIR)sort_5.c \
 				$(SRC_DIR)sort_6.c \
 				$(SRC_DIR)sort_radix.c \
-				$(SRC_DIR)sort_stack.c \
-				$(SRC_DIR)check_input.c
+				$(SRC_DIR)index_stack.c \
+				$(SRC_DIR)tmp.c
 
 OBJS		= $(SRCS:.c=.o)
 

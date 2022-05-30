@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/26 17:47:48 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/27 20:52:31 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/30 23:00:39 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	sort_5_helper(t_env *env)
 {
 	int	index;
 
-	index = get_idx_for_value(&env->stack_a, get_min_value(&env->stack_a));
+	index = get_idx_for_val(&env->stack_a, get_min_val(&env->stack_a));
 	if ((index + 1) == 5)
 		rrotate_a(env);
 	else

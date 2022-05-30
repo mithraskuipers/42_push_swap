@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   sort_4.c                                           :+:    :+:            */
+/*   tmp.c                                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/26 17:47:48 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/30 22:58:59 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/05/30 23:19:50 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/05/30 23:20:12 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_4(t_env *env)
+void	print_forwards(t_stack **head)
 {
-	int	index;
+	int		i;
+	t_stack	*tmp;
 
-	index = get_idx_for_val(&env->stack_a, get_min_val(&env->stack_a));
-	if ((index + 1) == 4)
-		rrotate_a(env);
-	else
+	i = 0;
+	tmp = *head;
+	while (tmp)
 	{
-		while (index)
-		{
-			rotate_a(env);
-			index--;
-		}
+		printf("node %d: %d [%d]\n", i, (tmp)->value, (tmp)->index);
+		(tmp) = (tmp)->next;
+		i++;
 	}
-	push_b(env);	
-	sort_3(env);
-	push_a(env);
 }

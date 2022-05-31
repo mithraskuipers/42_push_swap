@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   str_only_nbrs.c                                    :+:    :+:            */
+/*   iswhitespace.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/26 15:22:20 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/31 12:33:29 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/05/05 10:27:12 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/05/31 12:34:13 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	str_only_nbrs(char *s)
+int	mk_iswhitespace(int c)
 {
-	int	i;
-
-	i = 0;
-	if (s[i] == '-')
-		i++;
-	else if ((ft_isdigit(s[i]) != 1))
-		return (0);
-	while (s[i])
-	{
-		if (ft_isdigit(s[i]) != 1)
-			return (0);
-		i++;
-	}
-	return (1);
+	if ((c == ' ') || (c == '\t') || (c == '\v') || (c == '\r') || (c == '\n') \
+	|| (c == '\f'))
+		return (1);
+	return (0);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   mk_str_only_digits.c                               :+:    :+:            */
+/*   str_only_digits.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/26 15:22:20 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/30 22:33:54 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/31 12:34:31 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	str_only_digits(char *s)
 {
 	int	i;
-	
+
 	i = 0;
-	while(s[i])
+	while (s[i])
 	{
 		if (ft_isdigit(s[i]) != 1)
 			return (0);

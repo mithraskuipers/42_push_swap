@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   push_swap.h                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/05/31 12:38:35 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/05/31 12:38:36 by mikuiper      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -6,21 +18,21 @@
 # define TRUE 1
 # define FALSE 0
 
-#include <limits.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+# include <limits.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
 
-#include "../libft/libft.h"
+# include "../libft/libft.h"
 
-typedef struct	s_stack
+typedef struct s_stack
 {
-	int	value;
-	int	index;
-	struct s_stack *next;
+	int				value;
+	int				index;
+	struct s_stack	*next;
 }				t_stack;
 
-typedef struct	s_env
+typedef struct s_env
 {
 	t_stack		*stack_a;
 	t_stack		*stack_b;
@@ -54,10 +66,10 @@ void	rrotate_b(t_env *env);
 void	rrotate_s(t_env *env);
 void	push_a(t_env *env);
 void	push_b(t_env *env);
-t_stack *popnode_front(t_stack **head);
+t_stack	*popnode_front(t_stack **head);
 t_stack	*get_last(t_stack *lst);
 t_stack	*popnode_end(t_stack **head);
-t_stack *popnode_front(t_stack **head);
+t_stack	*popnode_front(t_stack **head);
 t_stack	*newnode(int val, int index);
 
 void	print_forwards(t_stack **head); // remove me!!!

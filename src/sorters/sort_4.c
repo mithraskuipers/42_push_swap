@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   str_only_nbrs.c                                    :+:    :+:            */
+/*   sort_4.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/26 15:22:20 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/31 12:33:29 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/05/26 17:47:48 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/05/31 11:38:15 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	str_only_nbrs(char *s)
+void	sort_4(t_env *env)
 {
-	int	i;
+	int	index;
 
-	i = 0;
-	if (s[i] == '-')
-		i++;
-	else if ((ft_isdigit(s[i]) != 1))
-		return (0);
-	while (s[i])
+	index = get_idx_for_val(&env->stack_a, get_min_val(&env->stack_a));
+	if ((index + 1) == 4)
+		rrotate_a(env);
+	else
 	{
-		if (ft_isdigit(s[i]) != 1)
-			return (0);
-		i++;
+		while (index)
+		{
+			rotate_a(env);
+			index--;
+		}
 	}
-	return (1);
+	push_b(env);
+	sort_3(env);
+	push_a(env);
 }

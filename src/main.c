@@ -6,21 +6,11 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/31 00:46:13 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/31 11:34:04 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*
-getbinary = lambda x, n: format(x, 'b').zfill(n) ; tmp = int(getbinary(99, 8))
-(cd tester2 && bash tester.sh .. 100 5)
-make && vals=`python random_nums2.py` && ./push_swap $vals | ./checker_linux $vals
-make && vals=`python random_nums2.py` && ./push_swap $vals | wc -l
-make && ARG="`ruby -e "puts (0..500).to_a.shuffle.join(' ')"`" && ./push_swap $ARG | wc -l
-python3 pyviz.py `ruby -e "puts (0..50).to_a.shuffle.join(' ')"`
-make fclean && git add . && git commit -m "norminette in progress" && git push
-*/
 
 int	main(int argc, char **argv)
 {
@@ -34,20 +24,5 @@ int	main(int argc, char **argv)
 	parse_input(argv, env);
 	check_input(env);
 	sort_stack(env);
-	//print_forwards(&env->stack_a);
 	return (0);
 }
-
-/*
-//swap_a(&env->stack_a); // leak!
-//push_b(&env->stack_a, &env->stack_b); // leak!
-//swap_b(&env->stack_b); // ???
-//print_forwards(&env->stack_a);
-//system("leaks push_swap");
-//free (env);
-
-TODO:
-Make norm
-Clean up prototypes, all require only env, not both stacks
-Clean up memory leaks
-*/

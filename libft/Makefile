@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/21 15:29:25 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/05/30 22:34:54 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/05/31 12:31:30 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ SRCS =	ft_atoi.c \
 		ft_strchr_pos.c \
 		dp_clean_char.c \
 		dp_clean_void.c \
-		mk_iswhitespace.c \
+		iswhitespace.c \
 		mk_atoi.c \
 		str_only_digits.c \
 		str_only_nbrs.c \

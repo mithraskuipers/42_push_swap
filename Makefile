@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/15 21:13:40 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/05/31 11:12:57 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/05/31 11:33:08 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,25 +20,30 @@ INCS	=	-I./inc
 
 SRC_DIR		= ./src/
 
+CMD_DIR		= ./src/commands/
+SORT_DIR	= ./src/sorters/
+PARSE_DIR	= ./src/parser/
+TOOL_DIR	= ./src/tools/
+
 SRCS		=	$(SRC_DIR)main.c \
-				$(SRC_DIR)parse_input.c \
-				$(SRC_DIR)check_input.c \
-				$(SRC_DIR)sort_stack.c \
-				$(SRC_DIR)node_tools.c \
-				$(SRC_DIR)cmd_rotate.c \
-				$(SRC_DIR)cmd_rrotate.c \
-				$(SRC_DIR)cmd_swap.c \
-				$(SRC_DIR)cmd_push.c \
-				$(SRC_DIR)sort_2.c \
-				$(SRC_DIR)sort_3.c \
-				$(SRC_DIR)sort_4.c \
-				$(SRC_DIR)sort_5.c \
-				$(SRC_DIR)sort_6.c \
-				$(SRC_DIR)sort_radix.c \
-				$(SRC_DIR)index_stack.c \
-				$(SRC_DIR)pop_node.c \
-				$(SRC_DIR)get_node.c \
-				$(SRC_DIR)add_node.c \
+				$(PARSE_DIR)parse_input.c \
+				$(PARSE_DIR)check_input.c \
+				$(SORT_DIR)sort_stack.c \
+				$(TOOL_DIR)node_tools.c \
+				$(CMD_DIR)cmd_rotate.c \
+				$(CMD_DIR)cmd_rrotate.c \
+				$(CMD_DIR)cmd_swap.c \
+				$(CMD_DIR)cmd_push.c \
+				$(SORT_DIR)sort_2.c \
+				$(SORT_DIR)sort_3.c \
+				$(SORT_DIR)sort_4.c \
+				$(SORT_DIR)sort_5.c \
+				$(SORT_DIR)sort_6.c \
+				$(SORT_DIR)sort_radix.c \
+				$(SORT_DIR)index_stack.c \
+				$(TOOL_DIR)pop_node.c \
+				$(TOOL_DIR)get_node.c \
+				$(TOOL_DIR)add_node.c \
 				$(SRC_DIR)tmp.c
 
 OBJS		= $(SRCS:.c=.o)

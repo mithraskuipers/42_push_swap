@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   str_only_nbrs.c                                    :+:    :+:            */
+/*   add_node.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/26 15:22:20 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/31 12:33:29 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/05/31 10:50:18 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/05/31 11:35:48 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	str_only_nbrs(char *s)
+void	addnode_front(t_stack **head, t_stack *new_node)
 {
-	int	i;
+	t_stack	*tmp;
 
-	i = 0;
-	if (s[i] == '-')
-		i++;
-	else if ((ft_isdigit(s[i]) != 1))
-		return (0);
-	while (s[i])
+	tmp = *head;
+	new_node->next = tmp;
+	*head = new_node;
+}
+
+void	addnode_end(t_stack **head, t_stack *new)
+{
+	t_stack	*final_element;
+
+	if (!(*head))
 	{
-		if (ft_isdigit(s[i]) != 1)
-			return (0);
-		i++;
+		*head = new;
+		return ;
 	}
-	return (1);
+	final_element = get_last(*head);
+	final_element->next = new;
 }

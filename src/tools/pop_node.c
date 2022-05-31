@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   str_only_nbrs.c                                    :+:    :+:            */
+/*   pop_node.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/26 15:22:20 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/31 12:33:29 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/05/31 10:42:32 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/05/31 11:40:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	str_only_nbrs(char *s)
+t_stack	*popnode_front(t_stack **head)
 {
-	int	i;
+	t_stack	*first;
 
-	i = 0;
-	if (s[i] == '-')
-		i++;
-	else if ((ft_isdigit(s[i]) != 1))
-		return (0);
-	while (s[i])
-	{
-		if (ft_isdigit(s[i]) != 1)
-			return (0);
-		i++;
-	}
-	return (1);
+	first = newnode((*head)->value, (*head)->index);
+	first->next = NULL;
+	(*head) = (*head)->next;
+	return (first);
+}
+
+t_stack	*popnode_end(t_stack **head)
+{
+	t_stack	*tmp;
+	t_stack	*popped;
+
+	tmp = *head;
+	while (tmp->next->next)
+		tmp = tmp->next;
+	popped = tmp->next;
+	tmp->next = NULL;
+	return (popped);
 }

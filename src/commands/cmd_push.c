@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   str_only_nbrs.c                                    :+:    :+:            */
+/*   cmd_push.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/26 15:22:20 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/31 12:33:29 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/05/05 19:37:07 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/05/31 11:35:03 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	str_only_nbrs(char *s)
+void	push_a(t_env *env)
 {
-	int	i;
+	t_stack	*tmp;
 
-	i = 0;
-	if (s[i] == '-')
-		i++;
-	else if ((ft_isdigit(s[i]) != 1))
-		return (0);
-	while (s[i])
+	if (n_nodes(&env->stack_b) > 0)
 	{
-		if (ft_isdigit(s[i]) != 1)
-			return (0);
-		i++;
+		tmp = popnode_front(&env->stack_b);
+		insert_node(&env->stack_a, tmp, 0);
+		write(1, "pa\n", 3);
 	}
-	return (1);
+}
+
+void	push_b(t_env *env)
+{
+	t_stack	*tmp;
+
+	if (n_nodes(&env->stack_a) > 0)
+	{
+		tmp = popnode_front(&env->stack_a);
+		insert_node(&env->stack_b, tmp, 0);
+		write(1, "pb\n", 3);
+	}
 }

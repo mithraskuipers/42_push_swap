@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 12:38:35 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/31 12:38:36 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/31 22:58:42 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ t_stack	*get_last(t_stack *lst);
 t_stack	*popnode_end(t_stack **head);
 t_stack	*popnode_front(t_stack **head);
 t_stack	*newnode(int val, int index);
+void	clean_and_exit(char *s, t_env *env, int exit_code);
 
 void	print_forwards(t_stack **head); // remove me!!!
 

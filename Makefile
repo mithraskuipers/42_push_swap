@@ -6,15 +6,14 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/15 21:13:40 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/05/31 11:33:08 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/05/31 23:01:29 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= push_swap
 CC			= gcc
-#CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror
 #CFLAGS		= -g3 -fsanitize=address
-#CFLAGS		= -g
 
 INCS	=	-I./inc
 
@@ -44,7 +43,7 @@ SRCS		=	$(SRC_DIR)main.c \
 				$(TOOL_DIR)pop_node.c \
 				$(TOOL_DIR)get_node.c \
 				$(TOOL_DIR)add_node.c \
-				$(SRC_DIR)tmp.c
+				$(TOOL_DIR)clean_stack.c
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -66,14 +65,14 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(INCS) -c -o $@ $<
 
 clean:
-	$(FT_MAKE) clean
+	#@$(FT_MAKE) clean
 	@echo "$(GREEN)[push_swap] - Running clean..$(NOCOLOR)"
 	@echo "$(GREEN)[push_swap] - Removing object files..$(NOCOLOR)"
 	@$(RM) $(OBJS)
 	@echo "$(GREEN)[push_swap] - Finished running clean!$(NOCOLOR)"
 
 fclean:
-	@$(FT_MAKE) fclean
+	#@$(FT_MAKE) fclean
 	@echo "$(GREEN)[push_swap] - Running fclean..$(NOCOLOR)"
 	@echo "$(GREEN)[push_swap] - Removing object files..$(NOCOLOR)"
 	@echo "$(GREEN)[push_swap] - Finished running fclean!$(NOCOLOR)"

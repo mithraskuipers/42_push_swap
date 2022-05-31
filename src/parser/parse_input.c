@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 15:27:24 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/31 10:37:56 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/31 23:00:03 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	parse_input(char **argv, t_env *env)
 		{
 			if ((mk_atoi(splitted_args[j], &val) == -1) || \
 			(str_only_nbrs(splitted_args[j]) == 0))
-				msg_exit("Error", 2);
+				clean_and_exit("Error", env, 2);
 			addnode_end(&env->stack_a, newnode(val, -1));
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/27 19:25:54 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/30 23:22:56 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/31 23:07:37 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	isordered(t_stack **head)
 void	check_input(t_env *env)
 {
 	if (hasduplicates(&env->stack_a))
-		msg_exit("Error", 2);
+		clean_and_exit("Error", env, 2);
 	if (isordered(&env->stack_a))
-		exit(2);
+		clean_and_exit("", env, 2);
 }

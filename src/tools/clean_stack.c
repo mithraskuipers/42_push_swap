@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   tmp.c                                              :+:    :+:            */
+/*   clean_stack.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/30 23:19:50 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/30 23:20:12 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/05/31 21:56:49 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/05/31 22:59:33 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_forwards(t_stack **head)
+static void	clean_stack(t_stack **head)
 {
-	int		i;
 	t_stack	*tmp;
 
-	i = 0;
-	tmp = *head;
-	while (tmp)
+	while (*head)
 	{
-		printf("node %d: %d [%d]\n", i, (tmp)->value, (tmp)->index);
-		(tmp) = (tmp)->next;
-		i++;
+		tmp = (*head)->next;
+		free (*head);
+		*head = tmp;
 	}
+	free (tmp);
+}
+
+void	clean_and_exit(char *s, t_env *env, int exit_code)
+{
+	if (&env->stack_a)
+		clean_stack(&env->stack_a);
+	if (&env->stack_b)
+		clean_stack(&env->stack_b);
+	if (env)
+		free (env);
+	msg_exit(s, exit_code);
 }

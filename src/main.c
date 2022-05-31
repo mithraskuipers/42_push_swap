@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/31 11:34:04 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/31 23:05:21 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ int	main(int argc, char **argv)
 		exit(2);
 	env = ft_calloc(1, sizeof(t_env));
 	if ((!env))
-		msg_exit("Error", 2);
+		clean_and_exit("Error", env, 2);
 	parse_input(argv, env);
 	check_input(env);
-	sort_stack(env);
+	//sort_stack(env);
+
+
+
+
 	return (0);
 }

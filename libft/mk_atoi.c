@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 11:37:24 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/05 11:37:45 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/05/31 20:55:32 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	mk_atoi(char *s, int *nbr)
 	long	value;
 
 	i = 0;
-	while (mk_iswhitespace(s[i]))
+	while (iswhitespace(s[i]))
 		i++;
 	value = 0;
 	sign = 1;

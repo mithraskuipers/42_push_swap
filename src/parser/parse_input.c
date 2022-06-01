@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 15:27:24 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/06/01 21:20:03 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/01 23:10:40 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	parse_input(char **argv, t_env *env)
 		if (split_args == NULL)
 			clean_and_exit("Error", env, 2);
 		j = 0;
-		printf("%s\n", split_args[j]);
 		while (split_args[j])
 		{
 			check_and_add(env, split_args[j]);
@@ -77,5 +76,4 @@ void	parse_input(char **argv, t_env *env)
 		dp_clean_char(split_args);
 		i++;
 	}
-	printf("\n\n\n");
 }

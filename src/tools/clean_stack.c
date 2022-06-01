@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 21:56:49 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/06/01 20:47:18 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/01 23:15:37 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void clean_nodes(t_stack **head)
 			free (cur);
 			cur = next;
 		}
-	//free (head); //deze moet wegblijven
 	}
 }
 

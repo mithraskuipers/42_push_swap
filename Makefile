@@ -6,19 +6,18 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/15 21:13:40 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/05/31 23:01:29 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/06/01 13:40:56 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= push_swap
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
-#CFLAGS		= -g3 -fsanitize=address
+CFLAGS_DBG	= -g3 -fsanitize=address
 
 INCS	=	-I./inc
 
 SRC_DIR		= ./src/
-
 CMD_DIR		= ./src/commands/
 SORT_DIR	= ./src/sorters/
 PARSE_DIR	= ./src/parser/
@@ -61,18 +60,23 @@ $(NAME): $(OBJS)
 	@$(FT_MAKE)
 	@$(CC) $(CFLAGS) $(INCS) -o $(NAME) $(OBJS) $(FT_LIB)
 
+dbg: fclean all
+	@echo "\n$(GREEN)[push_swap] - Compiling $(NAME)..$(NOCOLOR)"
+	@$(FT_MAKE)
+	@$(CC) $(CFLAGS_DBG) $(INCS) -o $(NAME) $(OBJS) $(FT_LIB)
+
 .c.o:
 	@$(CC) $(CFLAGS) $(INCS) -c -o $@ $<
 
 clean:
-	#@$(FT_MAKE) clean
+	@$(FT_MAKE) clean
 	@echo "$(GREEN)[push_swap] - Running clean..$(NOCOLOR)"
 	@echo "$(GREEN)[push_swap] - Removing object files..$(NOCOLOR)"
 	@$(RM) $(OBJS)
 	@echo "$(GREEN)[push_swap] - Finished running clean!$(NOCOLOR)"
 
 fclean:
-	#@$(FT_MAKE) fclean
+	@$(FT_MAKE) fclean
 	@echo "$(GREEN)[push_swap] - Running fclean..$(NOCOLOR)"
 	@echo "$(GREEN)[push_swap] - Removing object files..$(NOCOLOR)"
 	@echo "$(GREEN)[push_swap] - Finished running fclean!$(NOCOLOR)"

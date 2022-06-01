@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 10:50:18 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/31 11:35:48 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/01 20:44:09 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	addnode_end(t_stack **head, t_stack *new)
 		*head = new;
 		return ;
 	}
-	final_element = get_last(*head);
+	final_element = get_last(head);
 	final_element->next = new;
 }

@@ -6,12 +6,13 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 21:56:49 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/31 22:59:33 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/01 20:47:18 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
 static void	clean_stack(t_stack **head)
 {
 	t_stack	*tmp;
@@ -19,19 +20,34 @@ static void	clean_stack(t_stack **head)
 	while (*head)
 	{
 		tmp = (*head)->next;
-		free (*head);
 		*head = tmp;
+		free (tmp);
 	}
-	free (tmp);
+}
+*/
+
+static void clean_nodes(t_stack **head)
+{
+	t_stack	*cur;
+	t_stack	*next;
+
+	if (*head)
+	{
+		cur = *head;
+		while (cur->next)
+		{
+			next = cur->next;
+			free (cur);
+			cur = next;
+		}
+	//free (head); //deze moet wegblijven
+	}
 }
 
 void	clean_and_exit(char *s, t_env *env, int exit_code)
 {
-	if (&env->stack_a)
-		clean_stack(&env->stack_a);
-	if (&env->stack_b)
-		clean_stack(&env->stack_b);
-	if (env)
-		free (env);
+	clean_nodes(&env->stack_a);
+	clean_nodes(&env->stack_b);
+	free(env);
 	msg_exit(s, exit_code);
 }

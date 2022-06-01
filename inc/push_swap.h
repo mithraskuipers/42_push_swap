@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 12:38:35 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/31 22:58:42 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/01 21:19:44 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_env
 	t_stack		*stack_b;
 }				t_env;
 
-void	parse_input(char **argv, t_env *env);
+void	parse_input(char **argv, t_env *env); //van mithras
 void	check_input(t_env *env);
 void	addnode_front(t_stack **head, t_stack *new_node);
 void	addnode_end(t_stack **head, t_stack *new);
@@ -67,7 +67,7 @@ void	rrotate_s(t_env *env);
 void	push_a(t_env *env);
 void	push_b(t_env *env);
 t_stack	*popnode_front(t_stack **head);
-t_stack	*get_last(t_stack *lst);
+t_stack	*get_last(t_stack **head);
 t_stack	*popnode_end(t_stack **head);
 t_stack	*popnode_front(t_stack **head);
 t_stack	*newnode(int val, int index);

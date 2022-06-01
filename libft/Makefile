@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/21 15:29:25 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/05/31 12:31:30 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/06/01 13:46:39 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ SRCS =	ft_atoi.c \
 		ft_strlen_fd.c \
 		ft_strlen_char.c \
 		mk_putnbr_base.c \
-		ft_calloc_new.c \
+		mk_calloc.c \
 		ft_strndup.c \
 		ft_strchr_pos.c \
 		dp_clean_char.c \

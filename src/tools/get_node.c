@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 10:46:37 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/31 11:40:04 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/01 20:29:41 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,18 @@ int	get_idx_for_val(t_stack **head, int value)
 	return (-1);
 }
 
-t_stack	*get_last(t_stack *stack)
+t_stack	*get_last(t_stack **head)
 {
-	while (stack)
+	t_stack *tmp;
+
+	tmp = *head;
+	while (tmp)
 	{
-		if (!(stack->next))
-			return (stack);
-		stack = stack->next;
+		if (!(tmp->next))
+			return (tmp);
+		tmp = tmp->next;
 	}
-	return (NULL);
+	return (tmp);
 }
 
 int	get_min_val(t_stack **head)

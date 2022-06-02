@@ -6,17 +6,11 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/30 17:58:59 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/05/31 11:38:05 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/02 13:45:45 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*
-get_next_unidx_min() identifies the unindexed node
-with the minimal value in the linked list is identified
-and returned.
-*/
 
 static	t_stack	*get_next_unidx_min(t_stack **head)
 {
@@ -38,14 +32,6 @@ static	t_stack	*get_next_unidx_min(t_stack **head)
 	}
 	return (minimum_node);
 }
-
-/*
-indexer() calls get_next_unindex_min() n times,
-where n equals the number of nodes in the linked
-list. Each time get_next_unindex_min() is run,
-the unindexed node with the minimal value in the
-linked list is identified and indexed.
-*/
 
 void	indexer(t_stack **head)
 {

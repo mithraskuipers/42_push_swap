@@ -6,27 +6,13 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 21:56:49 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/06/01 23:15:37 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/02 10:58:10 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
-static void	clean_stack(t_stack **head)
-{
-	t_stack	*tmp;
-
-	while (*head)
-	{
-		tmp = (*head)->next;
-		*head = tmp;
-		free (tmp);
-	}
-}
-*/
-
-static void clean_nodes(t_stack **head)
+static void	clean_nodes(t_stack **head)
 {
 	t_stack	*cur;
 	t_stack	*next;

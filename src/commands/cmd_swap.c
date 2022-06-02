@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 17:56:37 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/06/01 23:00:20 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/02 10:56:10 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	swap_a(t_env *env)
 
 	if (n_nodes(&env->stack_a) > 0)
 	{
-		tmp = popnode_front(&env->stack_a); // HIER KOMT DE LEAK VANDAAN ????
+		tmp = popnode_front(&env->stack_a);
 		insert_node(&env->stack_a, tmp, 1);
 		write(1, "sa\n", 3);
 	}

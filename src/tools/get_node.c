@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 10:46:37 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/06/01 20:29:41 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/02 10:58:23 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	get_idx_for_val(t_stack **head, int value)
 
 t_stack	*get_last(t_stack **head)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	tmp = *head;
 	while (tmp)

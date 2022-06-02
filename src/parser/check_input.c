@@ -6,17 +6,11 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/27 19:25:54 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/06/01 23:10:11 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/02 10:33:44 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*
-ps_hasduplicates()
-Checks whether the linked list contains duplicate vals.
-If so, it calls msg_exit() which exits the program.
-*/
 
 static int	hasduplicates(t_stack **head)
 {
@@ -42,13 +36,6 @@ static int	hasduplicates(t_stack **head)
 	}
 	return (0);
 }
-
-/*
-isordered()
-Checks whether the elements in the linked list are numerically ordered,
-from smallest to largest. If ordered, it returns 1. Else 0. Is also used in
-radix sort.
-*/
 
 int	isordered(t_stack **head)
 {

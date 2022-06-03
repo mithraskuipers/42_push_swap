@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 12:47:46 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/06/01 15:42:26 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/03 13:43:19 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_stack	*newnode(int val, int index)
 
 	node = malloc(sizeof(t_stack));
 	if (!node)
-		exit(2);
+		exit(1);
 	node->value = val;
 	node->index = index;
 	node->next = NULL;

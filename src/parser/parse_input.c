@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 15:27:24 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/06/02 11:49:08 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/03 13:42:16 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	check_and_add(t_env *env, char *s)
 	t_stack	*tmp;
 
 	if ((mk_atoi(s, &val) == -1) || (!str_only_nbrs(s)))
-		clean_and_exit("Error", env, 2);
+		clean_and_exit("Error", env, 1);
 	tmp = newnode(val, -1);
 	addnode_end(&env->stack_a, tmp);
 }
@@ -34,7 +34,7 @@ void	parse_input(char **argv, t_env *env)
 	{
 		split_args = ft_split(argv[i], ' ');
 		if (split_args == NULL)
-			clean_and_exit("Error", env, 2);
+			clean_and_exit("Error", env, 1);
 		j = 0;
 		while (split_args[j])
 		{

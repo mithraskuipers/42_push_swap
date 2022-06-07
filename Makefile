@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/15 21:13:40 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/06/02 12:22:15 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/06/07 07:59:56 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,14 +69,14 @@ dbg: fclean all
 	@$(CC) $(CFLAGS) $(INCS) -c -o $@ $<
 
 clean:
-	@$(FT_MAKE) clean
+	#@$(FT_MAKE) clean
 	@echo "$(GREEN)[push_swap] - Running clean..$(NOCOLOR)"
 	@echo "$(GREEN)[push_swap] - Removing object files..$(NOCOLOR)"
 	@$(RM) $(OBJS)
 	@echo "$(GREEN)[push_swap] - Finished running clean!$(NOCOLOR)"
 
 fclean:
-	@$(FT_MAKE) fclean
+	#@$(FT_MAKE) fclean
 	@echo "$(GREEN)[push_swap] - Running fclean..$(NOCOLOR)"
 	@echo "$(GREEN)[push_swap] - Removing object files..$(NOCOLOR)"
 	@echo "$(GREEN)[push_swap] - Finished running fclean!$(NOCOLOR)"

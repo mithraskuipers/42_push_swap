@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 16:00:03 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/06/07 12:20:37 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/07 14:18:27 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,66 +14,65 @@
 
 void	rotate_a(t_env *env)
 {
-	t_stack	*first_list;
-	t_stack	*rotate_list;
-	t_stack	*last_list;
+	t_stack	*old_head;
+	t_stack	*new_head;
+	t_stack	*tail;
 
-	if (env->stack_a == NULL || env->stack_a->next == NULL)
+	if ((n_nodes(&(env->stack_a)) < 2))
 		return ;
-	rotate_list = env->stack_a;
-	first_list = env->stack_a->next;
-	last_list = env->stack_a;
-	while (last_list->next != NULL)
-		last_list = last_list->next;
-	rotate_list->next = NULL;
-	last_list->next = rotate_list;
-	env->stack_a = first_list;
+	old_head = (env->stack_a);
+	new_head = (env->stack_a)->next;
+	tail = (env->stack_a);
+	while (tail->next != NULL)
+		tail = tail->next;
+	old_head->next = NULL;
+	tail->next = old_head;
+	(env->stack_a) = new_head;
 	write(1, "ra\n", 3);
 }
 
 void	rotate_b(t_env *env)
 {
-	t_stack	*first_list;
-	t_stack	*rotate_list;
-	t_stack	*last_list;
+	t_stack	*old_head;
+	t_stack	*new_head;
+	t_stack	*tail;
 
-	if (env->stack_b == NULL || env->stack_b->next == NULL)
+	if ((n_nodes(&(env->stack_b)) < 2))
 		return ;
-	rotate_list = env->stack_b;
-	first_list = env->stack_b->next;
-	last_list = env->stack_b;
-	while (last_list->next != NULL)
-		last_list = last_list->next;
-	rotate_list->next = NULL;
-	last_list->next = rotate_list;
-	env->stack_b = first_list;
+	old_head = (env->stack_b);
+	new_head = (env->stack_b)->next;
+	tail = (env->stack_b);
+	while (tail->next != NULL)
+		tail = tail->next;
+	old_head->next = NULL;
+	tail->next = old_head;
+	(env->stack_b) = new_head;
 	write(1, "rb\n", 3);
 }
 
 void	rotate_s(t_env *env)
 {
-	t_stack	*first_list;
-	t_stack	*rotate_list;
-	t_stack	*last_list;
+	t_stack	*old_head;
+	t_stack	*new_head;
+	t_stack	*tail;
 
-	if (env->stack_a == NULL || env->stack_a->next == NULL || \
-	env->stack_b == NULL || env->stack_b->next == NULL)
+	if ((n_nodes(&(env->stack_a)) < 2) || (n_nodes(&(env->stack_b)) < 2))
 		return ;
-	rotate_list = env->stack_a;
-	first_list = env->stack_a->next;
-	last_list = env->stack_a;
-	while (last_list->next != NULL)
-		last_list = last_list->next;
-	rotate_list->next = NULL;
-	last_list->next = rotate_list;
-	env->stack_a = first_list;
-	rotate_list = env->stack_b;
-	first_list = env->stack_b->next;
-	last_list = env->stack_b;
-	while (last_list->next != NULL)
-		last_list = last_list->next;
-	rotate_list->next = NULL;
-	last_list->next = rotate_list;
-	env->stack_b = first_list;
+	old_head = (env->stack_a);
+	new_head = (env->stack_a)->next;
+	tail = (env->stack_a);
+	while (tail->next != NULL)
+		tail = tail->next;
+	old_head->next = NULL;
+	tail->next = old_head;
+	(env->stack_a) = new_head;
+	old_head = (env->stack_b);
+	new_head = (env->stack_b)->next;
+	tail = (env->stack_b);
+	while (tail->next != NULL)
+		tail = tail->next;
+	old_head->next = NULL;
+	tail->next = old_head;
+	(env->stack_b) = new_head;
 	write(1, "rr\n", 3);
 }

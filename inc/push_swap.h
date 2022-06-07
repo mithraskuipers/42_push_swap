@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 12:38:35 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/06/07 12:36:28 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/07 12:39:44 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_env
 
 void	parse_input(char **argv, t_env *env);
 void	check_input(t_env *env);
-void	addnode_front(t_stack **head, t_stack *new_node);
 void	addnode_end(t_stack **head, t_stack *new);
 void	sort_stack(t_env *env);
 int		n_nodes(t_stack **head);
@@ -55,7 +54,6 @@ int		isordered(t_stack **head);
 void	swap_a(t_env *env);
 void	swap_b(t_env *env);
 void	swap_s(t_env *env);
-void	insert_node(t_stack **head, t_stack *new_node, int pos);
 void	rotate_a(t_env *env);
 void	rotate_b(t_env *env);
 void	rotate_s(t_env *env);
@@ -65,10 +63,7 @@ void	rrotate_s(t_env *env);
 void	push_a(t_env *env);
 void	push_b(t_env *env);
 void	clean_and_exit(char *s, t_env *env, int exit_code);
-t_stack	*popnode_front(t_stack **head);
 t_stack	*get_last(t_stack **head);
-t_stack	*popnode_end(t_stack **head);
-t_stack	*popnode_front(t_stack **head);
 t_stack	*newnode(int val, int index);
 void	clean_nodes(t_stack **head);
 void	clean_all(t_env *env);

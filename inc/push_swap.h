@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 12:38:35 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/06/07 12:39:44 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/07 14:28:29 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ void	rrotate_b(t_env *env);
 void	rrotate_s(t_env *env);
 void	push_a(t_env *env);
 void	push_b(t_env *env);
+void	clean_nodes(t_stack **head);
+void	clean_all(t_env *env);
 void	clean_and_exit(char *s, t_env *env, int exit_code);
 t_stack	*get_last(t_stack **head);
 t_stack	*newnode(int val, int index);
-void	clean_nodes(t_stack **head);
-void	clean_all(t_env *env);
 
 #endif

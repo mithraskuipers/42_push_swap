@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/06/07 12:37:07 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/07 12:37:34 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int	main(int argc, char **argv)
 	//system("leaks push_swap");
 	return (0);
 }
-
-
 
 /*
 500 test

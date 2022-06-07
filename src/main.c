@@ -6,25 +6,11 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/25 23:09:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/06/07 12:29:10 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/07 12:37:07 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
-
-#include <stdio.h>
-void	printer(t_stack *stack)
-{
-	while (stack->next)
-	{
-		printf("Current value: %d\n", stack->value);
-		stack = stack->next;
-	}
-	printf("Current value: %d\n", stack->value);	
-}
-
 
 int	main(int argc, char **argv)
 {
@@ -36,14 +22,11 @@ int	main(int argc, char **argv)
 	if ((!env))
 		clean_and_exit("Error", env, 1);
 	(void)argv;
-	parse_input(argv, env); // 1 memory leak
-	//check_input(env);
-	//sort_stack(env);
-	//printer(env->stack_a);
-	//clean_nodes(&env->stack_a);
-	//clean_nodes(&env->stack_b);
-	//free(env);
-	system("leaks push_swap");
+	parse_input(argv, env);
+	check_input(env);
+	sort_stack(env);
+	clean_all(env);
+	//system("leaks push_swap");
 	return (0);
 }
 

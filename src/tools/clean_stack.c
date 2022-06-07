@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 21:56:49 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/06/06 19:06:04 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/07 12:36:49 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,15 @@ void	clean_nodes(t_stack **head)
 			free (cur);
 			cur = next;
 		}
+		free (cur);
 	}
-	//free (cur);
-	//free (head);
+}
+
+void	clean_all(t_env *env)
+{
+	clean_nodes(&env->stack_a);
+	clean_nodes(&env->stack_b);
+	free(env);
 }
 
 void	clean_and_exit(char *s, t_env *env, int exit_code)

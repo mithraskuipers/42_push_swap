@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/05 12:47:46 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/06/03 13:43:19 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/06/07 12:31:09 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,4 @@ int	n_nodes(t_stack **head)
 		i++;
 	}
 	return (i);
-}
-
-void	insert_node(t_stack **head, t_stack *new_node, int pos)
-{
-	t_stack	*edge_left;
-	t_stack	*mem;
-
-	edge_left = *head;
-	if (pos == 0)
-	{
-		new_node->next = edge_left;
-		*head = new_node;
-	}
-	else
-	{
-		while ((pos > 1) && (edge_left->next))
-		{
-			edge_left = edge_left->next;
-			pos--;
-		}
-		mem = edge_left->next;
-		edge_left->next = new_node;
-		new_node->next = mem;
-	}
 }

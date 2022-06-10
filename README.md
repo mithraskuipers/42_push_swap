@@ -1,6 +1,6 @@
 <p align="center" style="margin-bottom: 0px !important;">
   <img width="600" src="https://github.com/mithraskuipers/mithraskuipers/blob/master/readme_srcs/42/logo.png?raw=true" alt="42_Network_Amsterdam" align="center"> </p>
-<h1 align="center" style="margin-top: 0px;">Pipex</h1>
+<h1 align="center" style="margin-top: 0px;">push_swap</h1>
 
 <p align="center" style="margin-top: 0px;">
 <img src="https://forthebadge.com/images/badges/made-with-c.svg"/>
